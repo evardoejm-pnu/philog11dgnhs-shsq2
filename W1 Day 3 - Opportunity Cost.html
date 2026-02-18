@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 3: The Gains & Losses Ledger</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #2980b9; /* Deep blue for logic/finance theme */
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --correct: #1b5e20;
+            --incorrect: #b71c1c;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #2c3e50;
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        #presentation-container {
+            width: 95%;
+            height: 90%;
+            background: var(--bg);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border-radius: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 50px;
+            border-top: 15px solid var(--accent);
+        }
+
+        .slide {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .slide.active { display: flex; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        h1 { color: var(--primary); font-size: 3.5rem; margin: 0 0 15px 0; line-height: 1.1; }
+        h2 { color: var(--accent); font-size: 2rem; margin: 0 0 8px 0; text-transform: uppercase; }
+        p, li { line-height: 1.5; font-size: 1.7rem; margin-bottom: 10px; }
+        
+        .discussion-box {
+            background: #ebf5fb;
+            border-left: 12px solid var(--accent);
+            padding: 30px;
+            margin: 15px 0;
+            border-radius: 10px;
+            font-size: 1.7rem;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .option-btn {
+            padding: 20px;
+            border: 3px solid var(--primary);
+            background: white;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .option-btn:hover { background: #ecf0f1; border-color: var(--accent); }
+        
+        .rationalization {
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 12px;
+            display: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border: 3px solid transparent;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 40px;
+            right: 50px;
+            display: flex;
+            gap: 25px;
+        }
+
+        button.nav-btn {
+            padding: 20px 50px;
+            font-size: 1.7rem;
+            cursor: pointer;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        button.nav-btn:hover { background-color: var(--accent); }
+        button.nav-btn:disabled { background-color: #bdc3c7; cursor: not-allowed; }
+
+        .progress-dots {
+            position: absolute;
+            bottom: 65px;
+            left: 50px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .dot { width: 15px; height: 15px; background: #ddd; border-radius: 50%; }
+        .dot.active { background: var(--accent); width: 50px; border-radius: 25px; }
+
+        .ledger-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 1.5rem;
+        }
+        .ledger-table th { background: var(--primary); color: white; padding: 15px; text-align: left; }
+        .ledger-table td { border: 2px solid #ddd; padding: 15px; vertical-align: top; width: 50%; }
+    </style>
+</head>
+<body>
+
+    <div id="presentation-container">
+        <div class="slide active">
+            <h2>Philosophy</h2>
+            <h1>The Gains & Losses Ledger</h1>
+            <div class="discussion-box">
+                "To choose is to sacrifice. In every 'Yes,' there is a hidden 'No'."
+            </div>
+            <p>Today's Focus: <strong>Understanding Trade-offs and Opportunity Costs.</strong></p>
+        </div>
+
+        <div class="slide">
+            <h1>The Reality of "Finitude"</h1>
+            <p>Humans are limited by time and space. We cannot be everywhere at once.</p>
+            <ul>
+                <li>If you choose to study for 2 hours, you cannot sleep for those same 2 hours.</li>
+                <li>If you buy a game, you cannot use that same money for lunch.</li>
+            </ul>
+            <div class="discussion-box">
+                <strong>Discussion:</strong> Why does having limited time make our choices more valuable?
+            </div>
+        </div>
+
+        <div class="slide">
+            <h1>What is a Trade-off?</h1>
+            <p><strong>Opportunity Cost</strong> is the value of the "next best thing" that you gave up.</p>
+            
+            <p>Choosing is not just about what you <i>get</i>; it's about what you are <i>willing to lose</i> to get it.</p>
+        </div>
+
+        <div class="slide" id="q1">
+            <h2>Quiz 1/5</h2>
+            <h1>What does the term "Finitude" refer to in philosophy?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q1', 'wrong', 'Finitude is about limits, not infinity.')">A. Our ability to live forever.</button>
+                <button class="option-btn" onclick="showFeedback('q1', 'correct', 'Correct! We are limited by time, energy, and resources.')">B. The fact that human life and resources have limits.</button>
+                <button class="option-btn" onclick="showFeedback('q1', 'wrong', 'This is a mathematical term, not the philosophical meaning here.')">C. Having no choices at all.</button>
+            </div>
+            <div class="rationalization" id="rat-q1"></div>
+        </div>
+
+        <div class="slide" id="q2">
+            <h2>Quiz 2/5</h2>
+            <h1>If you choose to work on a weekend to earn money, what is your most likely "Opportunity Cost"?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q2', 'wrong', 'This is what you obtained, not what you gave up.')">A. The salary you earned.</button>
+                <button class="option-btn" onclick="showFeedback('q2', 'correct', 'Right! The cost is the leisure time or social events you missed.')">B. The rest and relaxation time you sacrificed.</button>
+                <button class="option-btn" onclick="showFeedback('q2', 'wrong', 'This is a consequence, but not the opportunity cost.')">C. The experience of working.</button>
+            </div>
+            <div class="rationalization" id="rat-q2"></div>
+        </div>
+
+        <div class="slide" id="q3">
+            <h2>Quiz 3/5</h2>
+            <h1>Why is every choice considered a "sacrifice"?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q3', 'wrong', 'Philosophy is about making better choices, not just suffering.')">A. Because life is meant to be difficult.</button>
+                <button class="option-btn" onclick="showFeedback('q3', 'wrong', 'Sometimes choices are easy, but they still have trade-offs.')">B. Because choices are always painful.</button>
+                <button class="option-btn" onclick="showFeedback('q3', 'correct', 'Yes. To say yes to one option is to say no to all other possible options.')">C. Because choosing one thing means letting go of another.</button>
+            </div>
+            <div class="rationalization" id="rat-q3"></div>
+        </div>
+
+        <div class="slide" id="q4">
+            <h2>Quiz 4/5</h2>
+            <h1>A student chooses to buy a textbook instead of a new pair of shoes. What is the "Obtained" value?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q4', 'wrong', 'The shoes were what was relinquished.')">A. Fashion and style.</button>
+                <button class="option-btn" onclick="showFeedback('q4', 'correct', 'Correct. Knowledge and academic preparation are the gains.')">B. Education and knowledge.</button>
+                <button class="option-btn" onclick="showFeedback('q4', 'wrong', 'The cost was the money spent, not the thing obtained.')">C. The money used for the book.</button>
+            </div>
+            <div class="rationalization" id="rat-q4"></div>
+        </div>
+
+        <div class="slide" id="q5">
+            <h2>Quiz 5/5</h2>
+            <h1>Which is a vertical (internal) loss when choosing to lie to avoid trouble?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q5', 'wrong', 'This is an external social consequence.')">A. Losing your phone as punishment.</button>
+                <button class="option-btn" onclick="showFeedback('q5', 'correct', 'Yes. You lose your peace of mind and your integrity.')">B. Losing your sense of self-respect and honesty.</button>
+                <button class="option-btn" onclick="showFeedback('q5', 'wrong', 'This is a horizontal social result.')")>C. Having to do more chores.</button>
+            </div>
+            <div class="rationalization" id="rat-q5"></div>
+        </div>
+
+        <div class="slide">
+            <h1>The Scholarship Dilemma</h1>
+            <div class="discussion-box">
+                <strong>The Scenario:</strong> You are offered a part-time job that pays well but requires you to work 30 hours a week. Taking it means you will definitely lose your academic scholarship because you won't have time to study.
+            </div>
+            <p><strong>Reflection:</strong> What is the "Gained" and what is the "Relinquished"? Is the money now worth the degree later?</p>
+        </div>
+
+        <div class="slide">
+            <h1>Activity: The Life Ledger</h1>
+            <p>Complete the following table on your paper for the scholarship dilemma above:</p>
+            <table class="ledger-table">
+                <tr>
+                    <th>Gains (What you Obtain)</th>
+                    <th>Sacrifices (What you Relinquish)</th>
+                </tr>
+                <tr>
+                    <td>List 3 benefits of taking the job.</td>
+                    <td>List 3 things you lose by taking the job.</td>
+                </tr>
+            </table>
+            <div class="discussion-box" style="margin-top:20px;">
+                <strong>Conclusion:</strong> Write one sentence justifying which side of the ledger is more important to your future self.
+            </div>
+        </div>
+
+        <div class="progress-dots" id="dots-container"></div>
+        <div class="controls">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)" disabled>Back</button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dotsContainer = document.getElementById('dots-container');
+
+        slides.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dotsContainer.appendChild(dot);
+        });
+
+        function updateUI() {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+            });
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.innerText = currentSlide === slides.length - 1 ? "Start Activity" : "Next";
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide >= slides.length) currentSlide = slides.length - 1;
+            updateUI();
+        }
+
+        function showFeedback(qId, status, message) {
+            const ratBox = document.getElementById('rat-' + qId);
+            ratBox.style.display = 'block';
+            if (status === 'correct') {
+                ratBox.style.backgroundColor = '#e8f5e9';
+                ratBox.style.borderColor = '#1b5e20';
+                ratBox.style.color = '#1b5e20';
+            } else {
+                ratBox.style.backgroundColor = '#ffebee';
+                ratBox.style.borderColor = '#b71c1c';
+                ratBox.style.color = '#b71c1c';
+            }
+            ratBox.innerHTML = `<strong>${status.toUpperCase()}:</strong> ${message}`;
+        }
+    </script>
+</body>
+</html>

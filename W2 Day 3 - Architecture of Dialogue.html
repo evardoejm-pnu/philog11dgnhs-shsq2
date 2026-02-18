@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 3: The Architecture of Dialogue</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #2980b9; /* Calming blue for presence and peace */
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --correct: #1b5e20;
+            --incorrect: #b71c1c;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #2c3e50;
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        #presentation-container {
+            width: 95%;
+            height: 90%;
+            background: var(--bg);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border-radius: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 50px;
+            border-top: 15px solid var(--accent);
+        }
+
+        .slide {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-in;
+            overflow-y: auto;
+        }
+
+        .slide.active { display: flex; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        h1 { color: var(--primary); font-size: 3.5rem; margin: 0 0 15px 0; line-height: 1.1; }
+        h2 { color: var(--accent); font-size: 2rem; margin: 0 0 8px 0; text-transform: uppercase; }
+        p, li { line-height: 1.5; font-size: 1.7rem; margin-bottom: 10px; }
+        
+        .discussion-box {
+            background: #ebf5fb;
+            border-left: 12px solid var(--accent);
+            padding: 30px;
+            margin: 15px 0;
+            border-radius: 10px;
+            font-size: 1.7rem;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .option-btn {
+            padding: 20px;
+            border: 3px solid var(--primary);
+            background: white;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .option-btn:hover { background: #ecf0f1; border-color: var(--accent); }
+        
+        .rationalization {
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 12px;
+            display: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border: 3px solid transparent;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 40px;
+            right: 50px;
+            display: flex;
+            gap: 25px;
+        }
+
+        button.nav-btn {
+            padding: 20px 50px;
+            font-size: 1.7rem;
+            cursor: pointer;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+
+        button.nav-btn:hover { background-color: var(--accent); }
+        button.nav-btn:disabled { background-color: #bdc3c7; cursor: not-allowed; }
+
+        .progress-dots {
+            position: absolute;
+            bottom: 65px;
+            left: 50px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .dot { width: 15px; height: 15px; background: #ddd; border-radius: 50%; }
+        .dot.active { background: var(--accent); width: 50px; border-radius: 25px; }
+
+        .highlight { color: var(--accent); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div id="presentation-container">
+        <div class="slide active">
+            <h2>Philosophy Day 3</h2>
+            <h1>The Architecture of Dialogue</h1>
+            <div class="discussion-box">
+                "Dialogue is not about winning an argument or finding a middle ground; it is about Presence."
+            </div>
+            <p>Today's Focus: <strong>Authentic dialogue means accepting others even if they are different.</strong></p>
+        </div>
+
+        <div class="slide">
+            <h1>The Meeting of Souls</h1>
+            <p>Martin Buber identified two ways of relating to the world:</p>
+            <ul>
+                <li><strong>I-It:</strong> Treating people as objects, tools, or sources of information.</li>
+                <li><strong>I-Thou:</strong> A sacred moment where you meet the other person’s whole being.</li>
+            </ul>
+            
+            <div class="discussion-box">
+                <strong>Activity:</strong> In your "Silent Conversation," did you feel like you were looking at an "It" or a "Thou"?
+            </div>
+        </div>
+
+        <div class="slide">
+            <h1>Seeming vs. Being</h1>
+            <p>We often fail at dialogue because we wear "masks."</p>
+            <ul>
+                <li><strong>Seeming:</strong> Acting in a way to impress others or protect our image.</li>
+                <li><strong>Being:</strong> Showing up as our true, authentic selves.</li>
+                <li><strong>Speechifying:</strong> Talking <i>at</i> someone instead of <i>with</i> them.</li>
+            </ul>
+            
+        </div>
+
+        <div class="slide">
+            <h1>The Heart of Dialogue</h1>
+            <p>Authentic dialogue requires <span class="highlight">Presence</span> and <span class="highlight">Acceptance</span>.</p>
+            <p>To accept someone who is different means listening to their "truth" without trying to "fix" them or compare them to yourself.</p>
+            <div class="discussion-box">
+                Acceptance is not agreeing with everything; it is acknowledging that the other person has the right to be different.
+            </div>
+        </div>
+
+        <div class="slide" id="q1">
+            <h2>Quiz 1/4</h2>
+            <h1>What characterizes an "I-It" relationship?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q1', 'correct', 'Correct. When we only care about what someone can do for us, we treat them as an object.')">A. Treating the other person as a tool or object for your own use.</button>
+                <button class="option-btn" onclick="showFeedback('q1', 'wrong', 'Meeting a person as a whole is an I-Thou relationship.')">B. Meeting a person as a whole, mysterious being.</button>
+                <button class="option-btn" onclick="showFeedback('q1', 'wrong', 'Silence can be either, but I-It specifically refers to objectification.')">C. Staying silent when someone is talking.</button>
+            </div>
+            <div class="rationalization" id="rat-q1"></div>
+        </div>
+
+        <div class="slide" id="q2">
+            <h2>Quiz 2/4</h2>
+            <h1>What is "Speechifying"?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q2', 'wrong', 'Giving a formal speech is just public speaking.')">A. Giving a formal speech in front of a class.</button>
+                <button class="option-btn" onclick="showFeedback('q2', 'correct', 'Yes. Dialogue is a two-way street; speechifying is a one-way lecture disguised as talk.')">B. Talking at someone to show off or control them, rather than listening.</button>
+                <button class="option-btn" onclick="showFeedback('q2', 'wrong', 'Dialogue involves listening, not just talking.')">C. Learning to speak many different languages.</button>
+            </div>
+            <div class="rationalization" id="rat-q2"></div>
+        </div>
+
+        <div class="slide" id="q3">
+            <h2>Quiz 3/4</h2>
+            <h1>In authentic dialogue, "Acceptance" means:</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q3', 'wrong', 'You don\'t have to change your beliefs to have a dialogue.')">A. Changing your mind to agree with the other person.</button>
+                <button class="option-btn" onclick="showFeedback('q3', 'wrong', 'Ignoring differences is a form of totalization.')">B. Pretending that the differences between you don\'t exist.</button>
+                <button class="option-btn" onclick="showFeedback('q3', 'correct', 'Right. It is acknowledging their right to be who they are.')">C. Acknowledging the other person\'s reality without judgment.</button>
+            </div>
+            <div class="rationalization" id="rat-q3"></div>
+        </div>
+
+        <div class="slide" id="q4">
+            <h2>Quiz 4/4</h2>
+            <h1>What is the difference between "Seeming" and "Being"?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q4', 'correct', 'Yes. Authentic dialogue requires Being (honesty) rather than Seeming (masks).')">A. Seeming is wearing a mask for others; Being is your true self.</button>
+                <button class="option-btn" onclick="showFeedback('q4', 'wrong', 'It\'s about authenticity, not physical presence.')">B. Seeming is being at school; Being is staying at home.</button>
+                <button class="option-btn" onclick="showFeedback('q4', 'wrong', 'This is a confusing play on words; the answer is A.')">C. Being is acting; Seeming is feeling.</button>
+            </div>
+            <div class="rationalization" id="rat-q4"></div>
+        </div>
+
+        <div class="slide">
+            <h1>Activity: The Dialogue Audit</h1>
+            <p><strong>Reflexive Writing (5-7 Sentences):</strong></p>
+            <ol>
+                <li>Reflect on a recent difficult conversation.</li>
+                <li>Was it an "I-It" or "I-Thou" encounter?</li>
+                <li>What "mask" were you wearing during that talk?</li>
+                <li>How could you have practiced "Acceptance" instead of "Speechifying"?</li>
+            </ol>
+            <div class="discussion-box">
+                "All real living is meeting." — Martin Buber
+            </div>
+        </div>
+
+        <div class="progress-dots" id="dots-container"></div>
+        <div class="controls">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)" disabled>Back</button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dotsContainer = document.getElementById('dots-container');
+
+        slides.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dotsContainer.appendChild(dot);
+        });
+
+        function updateUI() {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+            });
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.innerText = currentSlide === slides.length - 1 ? "Start Activity" : "Next";
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide >= slides.length) currentSlide = slides.length - 1;
+            updateUI();
+        }
+
+        function showFeedback(qId, status, message) {
+            const ratBox = document.getElementById('rat-' + qId);
+            ratBox.style.display = 'block';
+            if (status === 'correct') {
+                ratBox.style.backgroundColor = '#ebf5fb';
+                ratBox.style.borderColor = '#2980b9';
+                ratBox.style.color = '#1b5e20';
+            } else {
+                ratBox.style.backgroundColor = '#fdf2f2';
+                ratBox.style.borderColor = '#b71c1c';
+                ratBox.style.color = '#b71c1c';
+            }
+            ratBox.innerHTML = `<strong>${status.toUpperCase()}:</strong> ${message}`;
+        }
+    </script>
+</body>
+</html>

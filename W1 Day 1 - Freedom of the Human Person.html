@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 1: The Ripple Effect</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --bg: #f4f7f6;
+            --text: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #presentation-container {
+            width: 80%;
+            max-width: 900px;
+            height: 600px;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 40px;
+        }
+
+        .slide {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 { color: var(--primary); border-bottom: 3px solid var(--accent); padding-bottom: 10px; }
+        h2 { color: var(--accent); }
+        p { line-height: 1.6; font-size: 1.2rem; }
+        
+        .highlight-box {
+            background: #eef7fd;
+            border-left: 5px solid var(--accent);
+            padding: 20px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            display: flex;
+            gap: 20px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        button:hover { background-color: var(--accent); }
+        button:disabled { background-color: #ccc; cursor: not-allowed; }
+
+        .progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 5px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="presentation-container">
+        <div class="progress-bar" id="progress"></div>
+
+        <div class="slide active">
+            <h1>Day 1: The Ripple Effect</h1>
+            <h2>Unit: Freedom of the Human Person</h2>
+            <p><strong>Competency 5.1:</strong> Realize that “all actions have consequences.”</p>
+            <div class="highlight-box">
+                "Freedom is not the absence of consequences, but the power to choose them."
+            </div>
+            <p>Welcome, class. Today we explore how your choices move the world.</p>
+        </div>
+
+        <div class="slide">
+            <h1>Intro: The Decision Point</h1>
+            <p>Look at the board. Imagine this scenario:</p>
+            <h2 style="text-align: center; background: #eee; padding: 20px; border-radius: 10px;">
+                "You witness a close friend bullying a younger student."
+            </h2>
+            <p>The teacher will now draw a circle. What happens if you stay silent? What happens if you speak up? Let's map the first 'ripples'.</p>
+        </div>
+
+        <div class="slide">
+            <h1>The Philosophy of Causality</h1>
+            <p>Every human act is a <strong>"Prime Mover."</strong></p>
+            <ul>
+                <li><strong>Natural Events:</strong> A rock falls because of gravity. It has no choice.</li>
+                <li><strong>Human Acts:</strong> You move because you <i>decide</i> to. You are the origin of the chain.</li>
+            </ul>
+            <p>Because you are the origin, you "own" the results that follow.</p>
+        </div>
+
+        <div class="slide">
+            <h1>Horizontal vs. Vertical</h1>
+            <p>There are two types of ripples created by your freedom:</p>
+            <ol>
+                <li><strong>Horizontal:</strong> The outward effects (e.g., your friend gets hurt, you get a detention).</li>
+                <li><strong>Vertical:</strong> The inward effects (e.g., you become a person who lacks courage, or a person who stands for justice).</li>
+            </ol>
+            <p>Which one stays with you longer?</p>
+        </div>
+
+        <div class="slide">
+            <h1>Activity: The Multi-Tiered Ripple Map</h1>
+            <p><strong>Task:</strong> In pairs, choose one action (e.g., Cheating on a quiz vs. Being honest).</p>
+            <p>Draw three rings on your paper:</p>
+            <ul>
+                <li><strong>Ring 1 (Immediate):</strong> Results in the next 10 minutes.</li>
+                <li><strong>Ring 2 (Relational):</strong> How it affects trust and friendships.</li>
+                <li><strong>Ring 3 (Character):</strong> Who do you become after 100 choices like this?</li>
+            </ul>
+        </div>
+
+        <div class="slide">
+            <h1>Conclusion: The Package Deal</h1>
+            <p>Remember this guiding principle for the week:</p>
+            <div class="highlight-box">
+                "We are free to choose our actions, but we are not free to choose the consequences."
+            </div>
+            <p>When you pick up one end of the stick, you pick up the other end too. <strong>Action and consequence are a single package.</strong></p>
+        </div>
+
+        <div class="controls">
+            <button id="prevBtn" onclick="changeSlide(-1)" disabled>Previous</button>
+            <button id="nextBtn" onclick="changeSlide(1)">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const progress = document.getElementById('progress');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function updateUI() {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+            });
+
+            // Progress Bar
+            const percent = ((currentSlide + 1) / slides.length) * 100;
+            progress.style.width = percent + '%';
+
+            // Button states
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.innerText = currentSlide === slides.length - 1 ? "Finish" : "Next";
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide >= slides.length) {
+                alert("End of Lesson 1. Time to start the Ripple Map activity!");
+                currentSlide = slides.length - 1;
+            }
+            updateUI();
+        }
+    </script>
+</body>
+</html>

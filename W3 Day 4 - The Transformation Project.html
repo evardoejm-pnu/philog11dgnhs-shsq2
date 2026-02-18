@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 4: The Transformation Project</title>
+    <style>
+        :root {
+            --primary: #1b2631;
+            --accent: #1abc9c; /* Teal for growth and balance */
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --correct: #1b5e20;
+            --incorrect: #b71c1c;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1b2631;
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        #presentation-container {
+            width: 95%;
+            height: 90%;
+            background: var(--bg);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border-radius: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 50px;
+            border-top: 15px solid var(--accent);
+        }
+
+        .slide {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            justify-content: center;
+            animation: fadeIn 0.4s ease-in-out;
+            overflow-y: auto;
+        }
+
+        .slide.active { display: flex; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        h1 { color: var(--primary); font-size: 3.5rem; margin: 0 0 15px 0; line-height: 1.1; }
+        h2 { color: var(--accent); font-size: 1.8rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 2px; }
+        p, li { line-height: 1.5; font-size: 1.7rem; margin-bottom: 12px; }
+        
+        .discussion-box {
+            background: #e8f8f5;
+            border-left: 12px solid var(--accent);
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 12px;
+            font-size: 1.6rem;
+            font-style: italic;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .option-btn {
+            padding: 20px;
+            border: 3px solid #d5dbdb;
+            background: white;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: 0.3s;
+            line-height: 1.2;
+            height: 100%;
+        }
+
+        .option-btn:hover { background: #f4f6f7; border-color: var(--accent); }
+        
+        .rationalization {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+            font-size: 1.4rem;
+            border: 3px solid transparent;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 40px;
+            right: 50px;
+            display: flex;
+            gap: 20px;
+        }
+
+        button.nav-btn {
+            padding: 18px 45px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        button.nav-btn:hover { background-color: var(--accent); }
+        button.nav-btn:disabled { background-color: #bdc3c7; cursor: not-allowed; }
+
+        .progress-dots {
+            position: absolute;
+            bottom: 60px;
+            left: 50px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .dot { width: 14px; height: 14px; background: #ddd; border-radius: 50%; transition: 0.3s; }
+        .dot.active { background: var(--accent); width: 45px; border-radius: 20px; }
+    </style>
+</head>
+<body>
+
+    <div id="presentation-container">
+        <div class="slide active">
+            <h2>Social Transformation</h2>
+            <h1>The Transformation Project</h1>
+            <div class="discussion-box">
+                "Society has shaped you for years. Today is the day you decide how to shape society back."
+            </div>
+            <p>Objective: Evaluate the balance between <span style="color:var(--accent); font-weight:bold;">Agency</span> and <span style="color:var(--accent); font-weight:bold;">Social Structure</span>.</p>
+        </div>
+
+        <div class="slide">
+            <h1>The Tug of War</h1>
+            <p>Are we puppets of our culture, or can we cut the strings?</p>
+            
+            <ul>
+                <li><strong>Structure:</strong> The laws, traditions, and systems that limit our choices.</li>
+                <li><strong>Agency:</strong> The individual’s power to act independently and make free choices.</li>
+            </ul>
+            <p>Transformation happens when individuals use their <strong>Agency</strong> to challenge the <strong>Structure</strong>.</p>
+        </div>
+
+        <div class="slide">
+            <h1>The Cost of Progress</h1>
+            <p>Has modern society actually improved the human spirit?</p>
+            <ul>
+                <li><strong>Gains:</strong> Scientific knowledge, global connection, health, and comfort.</li>
+                <li><strong>Losses:</strong> Quiet reflection, local identity, and deep, unhurried time.</li>
+            </ul>
+            <div class="discussion-box">
+                "We have more friends on screen, but perhaps fewer neighbors at our door."
+            </div>
+        </div>
+
+        <div class="slide" id="q1">
+            <h2>Quiz 1/4</h2>
+            <h1>In social philosophy, what does "Agency" represent?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q1', 'wrong', 'This refers to social structure rather than individual agency.')">A. The set of rigid laws and historical traditions that dictate behavior.</button>
+                <button class="option-btn" onclick="showFeedback('q1', 'correct', 'Correct. Agency is your capacity to act as an independent being.')">B. The capacity of an individual to act independently and make free choices.</button>
+                <button class="option-btn" onclick="showFeedback('q1', 'wrong', 'An government department is a social structure, not individual agency.')">C. An official government department that manages social welfare programs.</button>
+                <button class="option-btn" onclick="showFeedback('q1', 'wrong', 'Passive acceptance is the opposite of exercising one\'s agency.')">D. The process of passively accepting all social norms without any question.</button>
+            </div>
+            <div class="rationalization" id="rat-q1"></div>
+        </div>
+
+        <div class="slide" id="q2">
+            <h2>Quiz 2/4</h2>
+            <h1>How does "Social Structure" influence an individual?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q2', 'correct', 'Yes. Structure creates the context and limits for our actions.')">A. It provides the frameworks and limits within which individuals must act.</button>
+                <button class="option-btn" onclick="showFeedback('q2', 'wrong', 'Structure often limits total freedom rather than providing it.')">B. It grants every person the total freedom to ignore all laws and rules.</button>
+                <button class="option-btn" onclick="showFeedback('q2', 'wrong', 'Personal genetics is biological, not a part of social structure.')">C. It is the biological DNA that determines a person’s physical appearance.</button>
+                <button class="option-btn" onclick="showFeedback('q2', 'wrong', 'Structure is a powerful force that affects everyone in a society.')">D. It is a minor and irrelevant force that has no impact on human life.</button>
+            </div>
+            <div class="rationalization" id="rat-q2"></div>
+        </div>
+
+        <div class="slide" id="q3">
+            <h2>Quiz 3/4</h2>
+            <h1>What is the "Cost of Progress" in modern Virtual societies?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q3', 'wrong', 'Global connection is generally seen as a gain, not a cost.')">A. The total lack of any global communication or international connection.</button>
+                <button class="option-btn" onclick="showFeedback('q3', 'wrong', 'Medical knowledge has increased significantly in the modern era.')">B. The complete loss of all medical and scientific knowledge from the past.</button>
+                <button class="option-btn" onclick="showFeedback('q3', 'correct', 'Right. We trade deep, local presence for wide, digital reach.')">C. The potential loss of deep, unmediated presence and local communal roots.</button>
+                <button class="option-btn" onclick="showFeedback('q3', 'wrong', 'This is factually incorrect regarding the nature of digital tools.')">D. The forced requirement for every human to live on a farm without tools.</button>
+            </div>
+            <div class="rationalization" id="rat-q3"></div>
+        </div>
+
+        <div class="slide" id="q4">
+            <h2>Quiz 4/4</h2>
+            <h1>Which act demonstrates transforming society back?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q4', 'wrong', 'Passive consumption does not change the social structure.')">A. Following every social media trend without considering the consequences.</button>
+                <button class="option-btn" onclick="showFeedback('q4', 'correct', 'Yes. Active, conscious choices can change the social script.')">B. Consciously choosing to act against a harmful norm to start a change.</button>
+                <button class="option-btn" onclick="showFeedback('q4', 'wrong', 'Isolation avoids society rather than transforming it.')">C. Moving to a deserted island to avoid ever speaking to a human again.</button>
+                <button class="option-btn" onclick="showFeedback('q4', 'wrong', 'Complaining without action is not a form of transformation.')">D. Complaining about the government while refusing to participate in it.</button>
+            </div>
+            <div class="rationalization" id="rat-q4"></div>
+        </div>
+
+        <div class="slide">
+            <h1>Activity: The Individual’s Manifesto</h1>
+            <p><strong>Reflexive Writing (5-7 Sentences):</strong></p>
+            <ol>
+                <li>Evaluate your own journey: How has society made you "better"?</li>
+                <li>How has society "limited" your potential or your spirit?</li>
+                <li>Identify one social "script" or "norm" you want to rewrite.</li>
+                <li>Write one specific pledge: How will you use your agency today?</li>
+            </ol>
+            <div class="discussion-box">
+                "You are the architect. The world is the clay. Start building."
+            </div>
+        </div>
+
+        <div class="progress-dots" id="dots-container"></div>
+        <div class="controls">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)" disabled>Back</button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dotsContainer = document.getElementById('dots-container');
+
+        slides.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dotsContainer.appendChild(dot);
+        });
+
+        function updateUI() {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+            });
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.innerText = currentSlide === slides.length - 1 ? "Start Activity" : "Next";
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            updateUI();
+        }
+
+        function showFeedback(qId, status, message) {
+            const ratBox = document.getElementById('rat-' + qId);
+            ratBox.style.display = 'block';
+            if (status === 'correct') {
+                ratBox.style.backgroundColor = '#d1f2eb';
+                ratBox.style.borderColor = '#1abc9c';
+                ratBox.style.color = '#1b5e20';
+            } else {
+                ratBox.style.backgroundColor = '#fadbd8';
+                ratBox.style.borderColor = '#e74c3c';
+                ratBox.style.color = '#b71c1c';
+            }
+            ratBox.innerHTML = `<strong>${status.toUpperCase()}:</strong> ${message}`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 4: Living Intersubjectivity</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #8e44ad; /* Vibrant purple for empowerment and action */
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --correct: #1b5e20;
+            --incorrect: #b71c1c;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #2c3e50;
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        #presentation-container {
+            width: 95%;
+            height: 90%;
+            background: var(--bg);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border-radius: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 50px;
+            border-top: 15px solid var(--accent);
+        }
+
+        .slide {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-in;
+            overflow-y: auto;
+        }
+
+        .slide.active { display: flex; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        h1 { color: var(--primary); font-size: 3.5rem; margin: 0 0 15px 0; line-height: 1.1; }
+        h2 { color: var(--accent); font-size: 2rem; margin: 0 0 8px 0; text-transform: uppercase; }
+        p, li { line-height: 1.5; font-size: 1.7rem; margin-bottom: 10px; }
+        
+        .discussion-box {
+            background: #f4ecf7;
+            border-left: 12px solid var(--accent);
+            padding: 30px;
+            margin: 15px 0;
+            border-radius: 10px;
+            font-size: 1.7rem;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .option-btn {
+            padding: 20px;
+            border: 3px solid var(--primary);
+            background: white;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .option-btn:hover { background: #ecf0f1; border-color: var(--accent); }
+        
+        .rationalization {
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 12px;
+            display: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border: 3px solid transparent;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 40px;
+            right: 50px;
+            display: flex;
+            gap: 25px;
+        }
+
+        button.nav-btn {
+            padding: 20px 50px;
+            font-size: 1.7rem;
+            cursor: pointer;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+
+        button.nav-btn:hover { background-color: var(--accent); }
+        button.nav-btn:disabled { background-color: #bdc3c7; cursor: not-allowed; }
+
+        .progress-dots {
+            position: absolute;
+            bottom: 65px;
+            left: 50px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .dot { width: 15px; height: 15px; background: #ddd; border-radius: 50%; }
+        .dot.active { background: var(--accent); width: 50px; border-radius: 25px; }
+
+        .highlight { color: var(--accent); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div id="presentation-container">
+        <div class="slide active">
+            <h2>Philosophy Day 4</h2>
+            <h1>Living Intersubjectivity</h1>
+            <div class="discussion-box">
+                "Philosophy is the head; Action is the hands. Today, we move from thinking to doing."
+            </div>
+            <p>Today's Focus: <strong>Demonstrating talents of the marginalized through solidarity.</strong></p>
+        </div>
+
+        <div class="slide">
+            <h1>The Ethics of Representation</h1>
+            <p>How do we showcase others' talents without being patronizing?</p>
+            <ul>
+                <li><strong>Pity:</strong> Looking down on others (maintains a power imbalance).</li>
+                <li><strong>Solidarity:</strong> Walking alongside others (acknowledges equal dignity).</li>
+            </ul>
+            <p>Our job is to <span class="highlight">amplify</span> voices, not speak over them.</p>
+        </div>
+
+        <div class="slide">
+            <h1>Empowerment & Allyship</h1>
+            
+            <p>An <strong>Ally</strong> uses their platform to advocate for those who are often silenced.</p>
+            <ul>
+                <li><strong>Inclusive Design:</strong> Creating a world where everyone can participate.</li>
+                <li><strong>Social Entrepreneurship:</strong> Business that solves community problems.</li>
+            </ul>
+        </div>
+
+        <div class="slide">
+            <h1>The Character Script</h1>
+            <p>Intersubjectivity is a <strong>project</strong>. You choose who you become through how you treat others.</p>
+            <div class="discussion-box">
+                When you choose to see talent instead of disability, you are "authoring" a version of yourself that is an ally.
+            </div>
+            
+        </div>
+
+        <div class="slide" id="q1">
+            <h2>Quiz 1/4</h2>
+            <h1>What is the main difference between Pity and Solidarity?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q1', 'wrong', 'Pity is actually quite emotional.')">A. Pity is emotional, while Solidarity is not.</button>
+                <button class="option-btn" onclick="showFeedback('q1', 'correct', 'Yes. Solidarity treats the other as an equal subject, while pity often treats them as an object.')">B. Solidarity treats the other as an equal; Pity maintains a power imbalance.</button>
+                <button class="option-btn" onclick="showFeedback('q1', 'wrong', 'They are very different in their philosophical approach to the Other.')">C. They are exactly the same thing.</button>
+            </div>
+            <div class="rationalization" id="rat-q1"></div>
+        </div>
+
+        <div class="slide" id="q2">
+            <h2>Quiz 2/4</h2>
+            <h1>How does an "Ally" behave in intersubjectivity?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q2', 'wrong', 'Allyship is about empowerment, not fixing.')">A. They try to "fix" everyone they see as different.</button>
+                <button class="option-btn" onclick="showFeedback('q2', 'correct', 'Correct. An ally helps create space for others to shine.')">B. They use their platform to amplify the voices and talents of others.</button>
+                <button class="option-btn" onclick="showFeedback('q2', 'wrong', 'This is the opposite of an ethical intersubjective relation.')">C. They ignore marginalized people to avoid offending them.</button>
+            </div>
+            <div class="rationalization" id="rat-q2"></div>
+        </div>
+
+        <div class="slide" id="q3">
+            <h2>Quiz 3/4</h2>
+            <h1>Empowerment is best defined as:</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q3', 'wrong', 'Giving money is charity; empowerment is about agency.')">A. Giving money to someone who is poor.</button>
+                <button class="option-btn" onclick="showFeedback('q3', 'correct', 'Right. It is helping people realize and use their own inherent power.')">B. Acknowledging a person\'s equal dignity and agency.</button>
+                <button class="option-btn" onclick="showFeedback('q3', 'wrong', 'Control is the opposite of empowerment.')">C. Telling someone what is best for them.</button>
+            </div>
+            <div class="rationalization" id="rat-q3"></div>
+        </div>
+
+        <div class="slide" id="q4">
+            <h2>Quiz 4/4</h2>
+            <h1>Why is Day 4 called the "Action" phase of Philosophy?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q4', 'wrong', 'Action requires thought, but it must go beyond it.')">A. Because we stop thinking and only act.</button>
+                <button class="option-btn" onclick="showFeedback('q4', 'correct', 'Yes! Intersubjectivity must be lived out in our choices and advocacy.')">B. Because intersubjectivity must be lived through ethical choices.</button>
+                <button class="option-btn" onclick="showFeedback('q4', 'wrong', 'The class is actually just beginning to apply these ideas.')">C. Because the class is over.</button>
+            </div>
+            <div class="rationalization" id="rat-q4"></div>
+        </div>
+
+        <div class="slide">
+            <h1>Activity: The Ally's Manifesto</h1>
+            <p><strong>Writing Task (5-7 Sentences):</strong></p>
+            <ol>
+                <li>Choose a marginalized group (e.g., street vendors, children with autism).</li>
+                <li>Identify one specific talent or strength they have.</li>
+                <li>Write a plan/pledge on how you will advocate for that talent.</li>
+                <li>Ensure you focus on their <strong>Dignity</strong>, not their "need for help."</li>
+            </ol>
+            <div class="discussion-box">
+                "Freedom is what you do with what's been done to you."
+            </div>
+        </div>
+
+        <div class="progress-dots" id="dots-container"></div>
+        <div class="controls">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)" disabled>Back</button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dotsContainer = document.getElementById('dots-container');
+
+        slides.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dotsContainer.appendChild(dot);
+        });
+
+        function updateUI() {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+            });
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.innerText = currentSlide === slides.length - 1 ? "Finish Lesson" : "Next";
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide >= slides.length) currentSlide = slides.length - 1;
+            updateUI();
+        }
+
+        function showFeedback(qId, status, message) {
+            const ratBox = document.getElementById('rat-' + qId);
+            ratBox.style.display = 'block';
+            if (status === 'correct') {
+                ratBox.style.backgroundColor = '#f4ecf7';
+                ratBox.style.borderColor = '#8e44ad';
+                ratBox.style.color = '#1b5e20';
+            } else {
+                ratBox.style.backgroundColor = '#fdf2f2';
+                ratBox.style.borderColor = '#b71c1c';
+                ratBox.style.color = '#b71c1c';
+            }
+            ratBox.innerHTML = `<strong>${status.toUpperCase()}:</strong> ${message}`;
+        }
+    </script>
+</body>
+</html>

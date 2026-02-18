@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 1: The Social Birth (Revised)</title>
+    <style>
+        :root {
+            --primary: #1a2a6c;
+            --accent: #5dade2; 
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --correct: #1b5e20;
+            --incorrect: #b71c1c;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a2a6c;
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        #presentation-container {
+            width: 95%;
+            height: 90%;
+            background: var(--bg);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border-radius: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 50px;
+            border-top: 15px solid var(--accent);
+        }
+
+        .slide {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            justify-content: center;
+            animation: fadeIn 0.4s ease-in-out;
+            overflow-y: auto;
+        }
+
+        .slide.active { display: flex; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        h1 { color: var(--primary); font-size: 3.5rem; margin: 0 0 15px 0; line-height: 1.1; }
+        h2 { color: var(--accent); font-size: 1.8rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 2px; }
+        p, li { line-height: 1.5; font-size: 1.7rem; margin-bottom: 12px; }
+        
+        .discussion-box {
+            background: #ebf5fb;
+            border-left: 12px solid var(--accent);
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 12px;
+            font-size: 1.6rem;
+            font-style: italic;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .option-btn {
+            padding: 15px;
+            border: 3px solid #d5dbdb;
+            background: white;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: 0.3s;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .option-btn:hover { background: #f4f6f7; border-color: var(--accent); }
+        
+        .rationalization {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+            font-size: 1.4rem;
+            border: 3px solid transparent;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 40px;
+            right: 50px;
+            display: flex;
+            gap: 20px;
+        }
+
+        button.nav-btn {
+            padding: 18px 45px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        button.nav-btn:hover { background-color: var(--accent); }
+        button.nav-btn:disabled { background-color: #bdc3c7; cursor: not-allowed; }
+
+        .progress-dots {
+            position: absolute;
+            bottom: 60px;
+            left: 50px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .dot { width: 14px; height: 14px; background: #ddd; border-radius: 50%; transition: 0.3s; }
+        .dot.active { background: var(--accent); width: 45px; border-radius: 20px; }
+    </style>
+</head>
+<body>
+
+    <div id="presentation-container">
+        <div class="slide active">
+            <h2>Philosophy of Society</h2>
+            <h1>The Social Birth</h1>
+            <div class="discussion-box">
+                "We are not born with a personality; we are born into a society that hands us one."
+            </div>
+            <p>Objective: Recognize how individuals form societies and are <strong>transformed</strong> by them.</p>
+        </div>
+
+        <div class="slide">
+            <h1>The Looking-Glass Self</h1>
+            <p>Charles Horton Cooley argued that society acts as a mirror.</p>
+            
+            <ul>
+                <li>We imagine how we appear to others.</li>
+                <li>We imagine their judgment of that appearance.</li>
+                <li>We develop our "Self" based on these reflections.</li>
+            </ul>
+        </div>
+
+        <div class="slide">
+            <h1>Creation & Transformation</h1>
+            <p>How the social world is built and maintained:</p>
+            <ol>
+                <li><strong>Externalization:</strong> Humans create social rules and cultures.</li>
+                <li><strong>Objectivation:</strong> Rules start to feel like unchangeable facts.</li>
+                <li><strong>Internalization:</strong> We absorb these rules into our own minds.</li>
+            </ol>
+            
+        </div>
+
+        <div class="slide" id="q1">
+            <h2>Quiz 1/4</h2>
+            <h1>What is the core idea of the "Looking-Glass Self"?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q1', 'wrong', 'This focus on internal isolation ignores the social influence theory.')">A. Identity is formed through isolated introspection without outside help.</button>
+                <button class="option-btn" onclick="showFeedback('q1', 'correct', 'Correct! We use others as a mirror to understand our own identity.')">B. Self-identity is shaped by how we perceive the reactions of others.</button>
+                <button class="option-btn" onclick="showFeedback('q1', 'wrong', 'Biological factors are distinct from the social mirror concept itself.')">C. Personal behavior is determined solely by genetic and biological traits.</button>
+                <button class="option-btn" onclick="showFeedback('q1', 'wrong', 'Physical appearance is only one small part of the broader social self.')">D. Individuals must use actual mirrors daily to maintain their self-worth.</button>
+            </div>
+            <div class="rationalization" id="rat-q1"></div>
+        </div>
+
+        <div class="slide" id="q2">
+            <h2>Quiz 2/4</h2>
+            <h1>Which best describes the stage of "Internalization"?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q2', 'wrong', 'This refers to Externalization, where we actively build the world.')">A. When a group of people first creates a new law to govern a city.</button>
+                <button class="option-btn" onclick="showFeedback('q2', 'wrong', 'This refers to Objectivation, where rules feel like natural facts.')">B. When social rules begin to feel like natural laws that cannot change.</button>
+                <button class="option-btn" onclick="showFeedback('q2', 'correct', 'Yes. The social becomes personal through this mental absorption.')">C. When an individual adopts social norms as their own personal beliefs.</button>
+                <button class="option-btn" onclick="showFeedback('q2', 'wrong', 'Rejection is a form of agency, not the core of internalization.')">D. When a person decides to reject all social influences and live alone.</button>
+            </div>
+            <div class="rationalization" id="rat-q2"></div>
+        </div>
+
+        <div class="slide" id="q3">
+            <h2>Quiz 3/4</h2>
+            <h1>Why does society feel like an "objective" reality?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q3', 'wrong', 'Societies change over time, so they are not static biological facts.')">A. Because social structures are permanent and never change over time.</button>
+                <button class="option-btn" onclick="showFeedback('q3', 'correct', 'Correct. Habit and history make human-made rules feel solid.')">B. Because human-made rules become habitual and feel like natural truths.</button>
+                <button class="option-btn" onclick="showFeedback('q3', 'wrong', 'Every individual is influenced by society, regardless of their status.')">C. Because only the most powerful leaders get to decide what is real.</button>
+                <button class="option-btn" onclick="showFeedback('q3', 'wrong', 'While we learn at home, the feeling of objectivity is a broader process.')">D. Because we are born with the knowledge of every social rule already.</button>
+            </div>
+            <div class="rationalization" id="rat-q3"></div>
+        </div>
+
+        <div class="slide" id="q4">
+            <h2>Quiz 4/4</h2>
+            <h1>The relationship between individual and society is:</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q4', 'wrong', 'The two are deeply linked and cannot be completely separated.')">A. A completely separate existence where neither has any effect on the other.</button>
+                <button class="option-btn" onclick="showFeedback('q4', 'wrong', 'This ignores the power of social structures to transform individuals.')">B. A one-way street where individuals have total power over all systems.</button>
+                <button class="option-btn" onclick="showFeedback('q4', 'correct', 'Exactly. We create the world that eventually creates who we are.')">C. A dialectical process where both constantly shape and transform each other.</button>
+                <button class="option-btn" onclick="showFeedback('q4', 'wrong', 'While society is powerful, individuals still possess personal agency.')">D. A rigid system where individuals are mere robots with no personal choice.</button>
+            </div>
+            <div class="rationalization" id="rat-q4"></div>
+        </div>
+
+        <div class="slide">
+            <h1>Activity: The Social Mirror Reflection</h1>
+            <p><strong>Reflexive Writing (5-7 Sentences):</strong></p>
+            <ol>
+                <li>Choose one habit or belief you hold (e.g., your views on success).</li>
+                <li>Trace it: Did this come from your own mind, or a social mirror?</li>
+                <li>How has your school or family "transformed" this part of you?</li>
+                <li>If you were born in a different country, would this trait remain?</li>
+            </ol>
+        </div>
+
+        <div class="progress-dots" id="dots-container"></div>
+        <div class="controls">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)" disabled>Back</button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dotsContainer = document.getElementById('dots-container');
+
+        slides.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dotsContainer.appendChild(dot);
+        });
+
+        function updateUI() {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+            });
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.innerText = currentSlide === slides.length - 1 ? "Start Activity" : "Next";
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            updateUI();
+        }
+
+        function showFeedback(qId, status, message) {
+            const ratBox = document.getElementById('rat-' + qId);
+            ratBox.style.display = 'block';
+            if (status === 'correct') {
+                ratBox.style.backgroundColor = '#d4efdf';
+                ratBox.style.borderColor = '#27ae60';
+                ratBox.style.color = '#1b5e20';
+            } else {
+                ratBox.style.backgroundColor = '#fadbd8';
+                ratBox.style.borderColor = '#e74c3c';
+                ratBox.style.color = '#b71c1c';
+            }
+            ratBox.innerHTML = `<strong>${status.toUpperCase()}:</strong> ${message}`;
+        }
+    </script>
+</body>
+</html>

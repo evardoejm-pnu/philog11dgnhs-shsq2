@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 4: The Character Script (Ultimate Edition)</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #8e44ad; 
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --correct: #1b5e20;
+            --incorrect: #b71c1c;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #2c3e50;
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        #presentation-container {
+            width: 95%;
+            height: 90%;
+            background: var(--bg);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border-radius: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 45px;
+            border-top: 15px solid var(--accent);
+        }
+
+        .slide {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-in;
+            overflow-y: auto;
+            padding-right: 15px;
+        }
+
+        .slide.active { display: flex; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        h1 { color: var(--primary); font-size: 3rem; margin: 0 0 10px 0; line-height: 1.1; }
+        h2 { color: var(--accent); font-size: 1.8rem; margin: 0 0 8px 0; text-transform: uppercase; }
+        p, li { line-height: 1.4; font-size: 1.5rem; margin-bottom: 8px; }
+        
+        .discussion-box {
+            background: #f4ecf7;
+            border-left: 10px solid var(--accent);
+            padding: 25px;
+            margin: 15px 0;
+            border-radius: 10px;
+            font-size: 1.5rem;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .option-btn {
+            padding: 15px;
+            border: 3px solid var(--primary);
+            background: white;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1.3rem;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .option-btn:hover { background: #ecf0f1; border-color: var(--accent); }
+        
+        .rationalization {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            display: none;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border: 3px solid transparent;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 30px;
+            right: 50px;
+            display: flex;
+            gap: 20px;
+        }
+
+        button.nav-btn {
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        button.nav-btn:hover { background-color: var(--accent); }
+        button.nav-btn:disabled { background-color: #bdc3c7; cursor: not-allowed; }
+
+        .progress-dots {
+            position: absolute;
+            bottom: 55px;
+            left: 50px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .dot { width: 12px; height: 12px; background: #ddd; border-radius: 50%; }
+        .dot.active { background: var(--accent); width: 40px; border-radius: 20px; }
+
+        .highlight { color: var(--accent); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div id="presentation-container">
+        <div class="slide active">
+            <h2>Philosophy Day 4</h2>
+            <h1>The Character Script</h1>
+            <div class="discussion-box">
+                "We are not born with a manual. We have to write it as we go."
+            </div>
+            <p>Today we explore the ultimate responsibility: <strong>Inventing Yourself.</strong></p>
+        </div>
+
+        <div class="slide">
+            <h1>Existence Precedes Essence</h1>
+            <p>Jean-Paul Sartre, a famous philosopher, argued that for human beings: <span class="highlight">Existence comes first.</span></p>
+            <ul>
+                <li><strong>Objects:</strong> A papercutter is designed with a purpose before it is made. Its "what it is" (essence) comes before its "being" (existence).</li>
+                <li><strong>Humans:</strong> We just show up on the scene. We exist first, and then we spend our lives defining what we are.</li>
+            </ul>
+            
+        </div>
+
+        <div class="slide">
+            <h1>The iPhone vs. The Human</h1>
+            <p>Think about how different we are from the technology in your pocket:</p>
+            <ul>
+                <li><strong>The iPhone (Essence first):</strong> Before the phone was even made, engineers knew exactly what it would do. It was designed to call, text, and browse. It cannot choose to be a toaster tomorrow.</li>
+                <li><strong>The Human (Existence first):</strong> You were born without a "settings" menu. There is no pre-programmed button for "Honest" or "Lazy." You have to decide every morning what your "features" will be.</li>
+            </ul>
+        </div>
+
+        <div class="slide">
+            <h1>"Condemned to be Free"</h1>
+            <p>Sartre famously said humans are <span class="highlight">abandoned</span> in the world.</p>
+            <div class="discussion-box" style="font-size: 1.4rem;">
+                <strong>No Blueprint, No Excuses:</strong>
+                <br>Because there is no "Grand Design" telling you who to be, you have total freedom. But this freedom is heavy. You cannot say "I was born this way" or "I have no choice." If you are mean, it is because you choose to be mean right now. This weight of responsibility creates <strong>Anguish</strong>.
+            </div>
+            <p>We are "condemned" to freedom because we didn't ask to be here, but now we are responsible for every stroke of our script.</p>
+        </div>
+
+        <div class="slide">
+            <h1>Brick by Brick</h1>
+            <p>Every choice is like a brick in a building. If you choose honesty once, you are a person who told the truth. If you choose it 1,000 times, you <span class="highlight">become</span> an honest person.</p>
+            
+            <p>Your freedom is the tool you use to build the house you eventually have to live in. Sartre calls this <strong>"The Project."</strong></p>
+        </div>
+
+        <div class="slide" id="q1">
+            <h2>Quiz 1/5</h2>
+            <h1>Using the "iPhone" example, why do humans have more freedom than a phone?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q1', 'wrong', 'Sartre argues we have no pre-set purpose.')">A. Because we have a more complex internal blueprint.</button>
+                <button class="option-btn" onclick="showFeedback('q1', 'correct', 'Correct! We weren\'t designed for a specific task, so we get to choose our own.')">B. Because we have no pre-set essence; we create it through choice.</button>
+                <button class="option-btn" onclick="showFeedback('q1', 'wrong', 'Sartre is focused on freedom, not software.')">C. Because we can be programmed more easily.</button>
+            </div>
+            <div class="rationalization" id="rat-q1"></div>
+        </div>
+
+        <div class="slide" id="q2">
+            <h2>Quiz 2/5</h2>
+            <h1>What does Sartre mean by the term "Anguish"?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q2', 'wrong', 'Anguish is about the burden of choice, not sadness.')">A. Feeling sad because life has no meaning.</button>
+                <button class="option-btn" onclick="showFeedback('q2', 'correct', 'Yes. It\'s the realization that you alone are responsible for your identity.')">B. The stress of knowing you are fully responsible for your choices.</button>
+                <button class="option-btn" onclick="showFeedback('q2', 'wrong', 'This is the opposite of the responsibility Sartre describes.')")>C. The fear that other people will judge you.</button>
+            </div>
+            <div class="rationalization" id="rat-q2"></div>
+        </div>
+
+        <div class="slide" id="q3">
+            <h2>Quiz 3/5</h2>
+            <h1>If a person says, "I can't help being mean, it's just my personality," Sartre would call this:</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q3', 'correct', 'Sartre calls this \'Bad Faith\'—pretending you aren\'t free to change.')">A. "Bad Faith" (self-deception/lying to yourself).</button>
+                <button class="option-btn" onclick="showFeedback('q3', 'wrong', 'This is an excuse that denies the power of choice.')">B. A valid excuse.</button>
+                <button class="option-btn" onclick="showFeedback('q3', 'wrong', 'Prudence is about wise choice, not making excuses.')">C. Prudence.</button>
+            </div>
+            <div class="rationalization" id="rat-q3"></div>
+        </div>
+
+        <div class="slide" id="q4">
+            <h2>Quiz 4/5</h2>
+            <h1>How do "Habits" fit into the "Brick by Brick" building of character?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q4', 'wrong', 'Habits are the results of freedom.')">A. Habits take away our freedom.</button>
+                <button class="option-btn" onclick="showFeedback('q4', 'correct', 'Correct. Our repeated free choices eventually build a stable character.')">B. Our habits are the "bricks" that form our permanent essence.</button>
+                <button class="option-btn" onclick="showFeedback('q4', 'wrong', 'Every habit was once a choice.')")>C. Habits are things we are born with.</button>
+            </div>
+            <div class="rationalization" id="rat-q4"></div>
+        </div>
+
+        <div class="slide" id="q5">
+            <h2>Quiz 5/5</h2>
+            <h1>If "Existence precedes Essence," what is a human's primary job?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q5', 'wrong', 'Obeying is passive; essence-creation is active.')">A. To simply obey orders.</button>
+                <button class="option-btn" onclick="showFeedback('q5', 'correct', 'Yes! We are the authors of our own lives through our actions.')">B. To define who they are through their actions.</button>
+                <button class="option-btn" onclick="showFeedback('q5', 'wrong', 'Finding implies it\'s already there; creating implies it\'s your work.')">C. To find a destiny that is already hidden.</button>
+            </div>
+            <div class="rationalization" id="rat-q5"></div>
+        </div>
+
+        <div class="slide">
+            <h1>Activity 1: The Split-Screen Life</h1>
+            <div class="discussion-box">
+                <strong>The Scenario:</strong> You find an unattended laptop in the library. 
+                <br><br>
+                <strong>Path A:</strong> You walk away and leave it there.
+                <br>
+                <strong>Path B:</strong> You turn it in to the lost and found.
+            </div>
+            <p>Think about Sartre's view: Which path helps you create the "Essence" of a trustworthy person? How does your character change in one month depending on the path?</p>
+        </div>
+
+        <div class="slide">
+            <h1>Activity 2: The Two-Path Script</h1>
+            <p>On your paper, write a short summary for the laptop scenario:</p>
+            <ul>
+                <li><strong>Path A (Ignored):</strong> How do you feel about your "Essence" 1 week later?</li>
+                <li><strong>Path B (Returned):</strong> How did this choice change your self-respect?</li>
+                <li><strong>Reflect:</strong> Which "version" of yourself do you want to live with?</li>
+            </ul>
+        </div>
+
+        <div class="slide">
+            <h1>Activity 3: Rewriting Yourself</h1>
+            <p>Identify a trait you dislike (e.g., "I am lazy").</p>
+            <div class="discussion-box">
+                <strong>The Challenge:</strong>
+                <ol>
+                    <li>Stop saying "I AM lazy" (Treating yourself as an object).</li>
+                    <li>Start saying "I have CHOSEN to be lazy in the past."</li>
+                    <li><strong>New Script:</strong> What specific choice will you make tomorrow to "author" a different version of yourself?</li>
+                </ol>
+            </div>
+            <p style="text-align: center; font-style: italic;">"Freedom is what you do with what's been done to you." — J.P. Sartre</p>
+        </div>
+
+        <div class="progress-dots" id="dots-container"></div>
+        <div class="controls">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)" disabled>Back</button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dotsContainer = document.getElementById('dots-container');
+
+        slides.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dotsContainer.appendChild(dot);
+        });
+
+        function updateUI() {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+            });
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.innerText = currentSlide === slides.length - 1 ? "End Lesson" : "Next";
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide >= slides.length) currentSlide = slides.length - 1;
+            updateUI();
+        }
+
+        function showFeedback(qId, status, message) {
+            const ratBox = document.getElementById('rat-' + qId);
+            ratBox.style.display = 'block';
+            if (status === 'correct') {
+                ratBox.style.backgroundColor = '#f5eef8';
+                ratBox.style.borderColor = '#8e44ad';
+                ratBox.style.color = '#512e5f';
+            } else {
+                ratBox.style.backgroundColor = '#ffebee';
+                ratBox.style.borderColor = '#b71c1c';
+                ratBox.style.color = '#b71c1c';
+            }
+            ratBox.innerHTML = `<strong>${status.toUpperCase()}:</strong> ${message}`;
+        }
+    </script>
+</body>
+</html>

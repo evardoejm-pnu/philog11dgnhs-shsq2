@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 1: The Ethics of Difference</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #16a085; /* Teal for harmony and ethics */
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --correct: #1b5e20;
+            --incorrect: #b71c1c;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #2c3e50;
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        #presentation-container {
+            width: 95%;
+            height: 90%;
+            background: var(--bg);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border-radius: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 50px;
+            border-top: 15px solid var(--accent);
+        }
+
+        .slide {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-in;
+            overflow-y: auto;
+        }
+
+        .slide.active { display: flex; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        h1 { color: var(--primary); font-size: 3.5rem; margin: 0 0 15px 0; line-height: 1.1; }
+        h2 { color: var(--accent); font-size: 2rem; margin: 0 0 8px 0; text-transform: uppercase; }
+        p, li { line-height: 1.5; font-size: 1.7rem; margin-bottom: 10px; }
+        
+        .discussion-box {
+            background: #e8f8f5;
+            border-left: 12px solid var(--accent);
+            padding: 30px;
+            margin: 15px 0;
+            border-radius: 10px;
+            font-size: 1.7rem;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .option-btn {
+            padding: 20px;
+            border: 3px solid var(--primary);
+            background: white;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .option-btn:hover { background: #ecf0f1; border-color: var(--accent); }
+        
+        .rationalization {
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 12px;
+            display: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border: 3px solid transparent;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 40px;
+            right: 50px;
+            display: flex;
+            gap: 25px;
+        }
+
+        button.nav-btn {
+            padding: 20px 50px;
+            font-size: 1.7rem;
+            cursor: pointer;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+
+        button.nav-btn:hover { background-color: var(--accent); }
+        button.nav-btn:disabled { background-color: #bdc3c7; cursor: not-allowed; }
+
+        .progress-dots {
+            position: absolute;
+            bottom: 65px;
+            left: 50px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .dot { width: 15px; height: 15px; background: #ddd; border-radius: 50%; }
+        .dot.active { background: var(--accent); width: 50px; border-radius: 25px; }
+
+        .highlight { color: var(--accent); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div id="presentation-container">
+        <div class="slide active">
+            <h2>Philosophy Day 1</h2>
+            <h1>The Ethics of Difference</h1>
+            <div class="discussion-box">
+                "The moment we think we 'know' everything about someone based on their labels, we stop seeing them as a person."
+            </div>
+            <p>Today's Focus: <strong>Realizing that intersubjectivity requires accepting differences.</strong></p>
+        </div>
+
+        <div class="slide">
+            <h1>What Do You See?</h1>
+            <p>Our physical, cultural, and emotional "situatedness" shapes our reality.</p>
+            <div class="discussion-box">
+                <strong>Activity:</strong> Describe the abstract object provided by the teacher. Why do your classmates see something different?
+            </div>
+            <p>We must recognize that our perspective is only <i>one</i> among many.</p>
+        </div>
+
+        <div class="slide">
+            <h1>Emmanuel Levinas & The Other</h1>
+            <p>The "Other" is a mystery that can never be fully grasped or "boxed in."</p>
+            <ul>
+                <li><strong>Totalization:</strong> Imposing your own ideas and categories onto another person.</li>
+                <li><strong>The Face-to-Face:</strong> An encounter that demands respect and forbids us from "killing" (reducing) the other person's true self.</li>
+            </ul>
+            
+        </div>
+
+        <div class="slide">
+            <h1>Being-With Others</h1>
+            <p>Intersubjectivity is not just socializing; it is a <span class="highlight">"being-with"</span> that respects "alterity" (otherness).</p>
+            <p>Accepting differences is an <strong>active ethical commitment</strong> to let others be who they are without judgment.</p>
+            
+        </div>
+
+        <div class="slide" id="q1">
+            <h2>Quiz 1/4</h2>
+            <h1>What is "Totalization" in social interactions?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q1', 'correct', 'Yes! It is when we think our label for someone is the whole truth about them.')">A. Imposing your own categories and labels onto others.</button>
+                <button class="option-btn" onclick="showFeedback('q1', 'wrong', 'Totalization is about labels, not the number of people.')">B. Meeting as many people as possible.</button>
+                <button class="option-btn" onclick="showFeedback('q1', 'wrong', 'Accepting differences is the solution to totalization.')">C. Accepting the differences of others.</button>
+            </div>
+            <div class="rationalization" id="rat-q1"></div>
+        </div>
+
+        <div class="slide" id="q2">
+            <h2>Quiz 2/4</h2>
+            <h1>According to Levinas, what does the "Face-to-Face" encounter command?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q2', 'wrong', 'Intersubjectivity is about respect, not control.')">A. To make the other person think like you.</button>
+                <button class="option-btn" onclick="showFeedback('q2', 'wrong', 'Simply looking is not the ethical command.')">B. To look away from differences.</button>
+                <button class="option-btn" onclick="showFeedback('q2', 'correct', 'Correct. It is an ethical command to respect their mystery.')">C. To not reduce the other person to your own ideas.</button>
+            </div>
+            <div class="rationalization" id="rat-q2"></div>
+        </div>
+
+        <div class="slide" id="q3">
+            <h2>Quiz 3/4</h2>
+            <h1>Intersubjectivity is best described as:</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q3', 'wrong', 'This is a shallow version of intersubjectivity.')">A. Just being friendly to everyone.</button>
+                <button class="option-btn" onclick="showFeedback('q3', 'correct', 'Right. It is the deep recognition of another subject\'s reality.')">B. A "being-with" that respects the other\'s mystery.</button>
+                <button class="option-btn" onclick="showFeedback('q3', 'wrong', 'This is an I-It relationship.')">C. Using others to gain information.</button>
+            </div>
+            <div class="rationalization" id="rat-q3"></div>
+        </div>
+
+        <div class="slide" id="q4">
+            <h2>Quiz 4/4</h2>
+            <h1>Accepting differences is a "passive" act of tolerance.</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q4', 'wrong', 'Tolerance is not enough; we need active ethical commitment.')">A. True</button>
+                <button class="option-btn" onclick="showFeedback('q4', 'correct', 'Correct! It is an active commitment to respect alterity.')">B. False</button>
+            </div>
+            <div class="rationalization" id="rat-q4"></div>
+        </div>
+
+        <div class="slide">
+            <h1>Activity: The Unlabeled Encounter</h1>
+            <p><strong>Reflexive Writing (5-7 Sentences):</strong></p>
+            <ol>
+                <li>Think of a time you "boxed in" or stereotyped someone.</li>
+                <li>What labels did you impose on them?</li>
+                <li>How did this prevent you from seeing their complexity?</li>
+                <li>Write one way you can practice "letting others be" today.</li>
+            </ol>
+            <div class="discussion-box">
+                "To see the Face of the Other is to hear the command: Thou shalt not kill."
+            </div>
+        </div>
+
+        <div class="progress-dots" id="dots-container"></div>
+        <div class="controls">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)" disabled>Back</button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dotsContainer = document.getElementById('dots-container');
+
+        slides.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dotsContainer.appendChild(dot);
+        });
+
+        function updateUI() {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+            });
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.innerText = currentSlide === slides.length - 1 ? "Start Activity" : "Next";
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide >= slides.length) currentSlide = slides.length - 1;
+            updateUI();
+        }
+
+        function showFeedback(qId, status, message) {
+            const ratBox = document.getElementById('rat-' + qId);
+            ratBox.style.display = 'block';
+            if (status === 'correct') {
+                ratBox.style.backgroundColor = '#e8f8f5';
+                ratBox.style.borderColor = '#16a085';
+                ratBox.style.color = '#1b5e20';
+            } else {
+                ratBox.style.backgroundColor = '#fdf2f2';
+                ratBox.style.borderColor = '#b71c1c';
+                ratBox.style.color = '#b71c1c';
+            }
+            ratBox.innerHTML = `<strong>${status.toUpperCase()}:</strong> ${message}`;
+        }
+    </script>
+</body>
+</html>
