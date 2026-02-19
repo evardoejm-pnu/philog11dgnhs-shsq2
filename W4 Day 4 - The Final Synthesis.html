@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 4: The Final Synthesis</title>
+    <style>
+        :root {
+            --primary: #4527a0;
+            --accent: #00bcd4; /* Cyan for clarity and synthesis */
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --correct: #1b5e20;
+            --incorrect: #b71c1c;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #4527a0;
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        #presentation-container {
+            width: 95%;
+            height: 90%;
+            background: var(--bg);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border-radius: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 50px;
+            border-top: 15px solid var(--accent);
+        }
+
+        .slide {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            justify-content: center;
+            animation: fadeIn 0.4s ease-in-out;
+            overflow-y: auto;
+        }
+
+        .slide.active { display: flex; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        h1 { color: var(--primary); font-size: 3.2rem; margin: 0 0 15px 0; line-height: 1.1; }
+        h2 { color: var(--accent); font-size: 1.6rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 2px; }
+        p, li { line-height: 1.5; font-size: 1.6rem; margin-bottom: 12px; }
+        
+        .discussion-box {
+            background: #e0f7fa;
+            border-left: 12px solid var(--accent);
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 12px;
+            font-size: 1.5rem;
+            font-style: italic;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .option-btn {
+            padding: 18px;
+            border: 3px solid #d5dbdb;
+            background: white;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: 0.3s;
+            line-height: 1.3;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .option-btn:hover { background: #e0f7fa; border-color: var(--accent); }
+        
+        .rationalization {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+            font-size: 1.4rem;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 40px;
+            right: 50px;
+            display: flex;
+            gap: 20px;
+        }
+
+        button.nav-btn {
+            padding: 18px 45px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        button.nav-btn:hover { background-color: var(--accent); }
+        button.nav-btn:disabled { background-color: #bdc3c7; cursor: not-allowed; }
+
+        .progress-dots {
+            position: absolute;
+            bottom: 60px;
+            left: 50px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .dot { width: 14px; height: 14px; background: #ddd; border-radius: 50%; transition: 0.3s; }
+        .dot.active { background: var(--accent); width: 45px; border-radius: 20px; }
+    </style>
+</head>
+<body>
+
+    <div id="presentation-container">
+        <div class="slide active">
+            <h2>The Integrated Life</h2>
+            <h1>The Final Synthesis</h1>
+            
+            <div class="discussion-box">
+                "Meaning is not something you find; it is something you provide to your own life story."
+            </div>
+            <p>Objective: Synthesize the awareness of finitude, the choice of projects, and the ultimate "Final Why" into a coherent reflection on life.</p>
+        </div>
+
+        <div class="slide">
+            <h1>Finding Meaning in Everything</h1>
+            <p>Viktor Frankl, a psychiatrist and Holocaust survivor, argued that even in suffering, meaning exists.</p>
+            
+            <ul>
+                <li><strong>Creative Value:</strong> What we give to the world (Work/Projects).</li>
+                <li><strong>Experiential Value:</strong> What we take from the world (Love/Beauty).</li>
+                <li><strong>Attitudinal Value:</strong> The stance we take toward unavoidable suffering.</li>
+            </ul>
+        </div>
+
+        <div class="slide">
+            <h1>The Three Pillars of Your Story</h1>
+            
+            <p>A meaningful life is a <strong>synthesis</strong> of what we have learned this week:</p>
+            <ol>
+                <li><strong>Finitude:</strong> Accepting that our time is scarce and precious.</li>
+                <li><strong>Projects:</strong> Actively choosing who we are through our actions.</li>
+                <li><strong>Teleology:</strong> Aiming toward a "Final Why" that gives our life a direction.</li>
+            </ol>
+        </div>
+
+        <div class="slide" id="q1">
+            <h2>Quiz 1/4</h2>
+            <h1>According to Viktor Frankl, how can meaning be found in suffering?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q1', 'wrong', 'This view is nihilistic and contradicts Frankl\'s belief in findable meaning.')">A. By accepting that suffering is purely random and has no possible connection to meaning.</button>
+                <button class="option-btn" onclick="showFeedback('q1', 'correct', 'Correct. Our attitude toward things we cannot change defines our character.')">B. By choosing the attitude and dignity with which one faces unavoidable circumstances.</button>
+                <button class="option-btn" onclick="showFeedback('q1', 'wrong', 'Ignoring pain is a form of denial rather than a source of existential meaning.')">C. By completely ignoring the pain and pretending that the situation is actually a happy one.</button>
+                <button class="option-btn" onclick="showFeedback('q1', 'wrong', 'Meaning is internal; Frankl argues we can find it even without material success.')">D. By ensuring that one becomes famous and wealthy as a result of the difficult experience.</button>
+            </div>
+            <div class="rationalization" id="rat-q1"></div>
+        </div>
+
+        <div class="slide" id="q2">
+            <h2>Quiz 2/4</h2>
+            <h1>What is "Experiential Value" in the context of meaning?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q2', 'wrong', 'Creating things relates to Creative Value rather than Experiential Value.')">A. The meaning we gain from building complex machines and large engineering projects.</button>
+                <button class="option-btn" onclick="showFeedback('q2', 'correct', 'Right. Love and beauty are meanings we "take in" from the world around us.')">B. The meaning derived from experiencing beauty, nature, or the love of another person.</button>
+                <button class="option-btn" onclick="showFeedback('q2', 'wrong', 'This describes a biological process, not a philosophical source of meaning.')">C. The scientific process of conducting experiments in a lab to find objective truths.</button>
+                <button class="option-btn" onclick="showFeedback('q2', 'wrong', 'Personal gain is not the focus of Frankl\'s existential Experiential Value.')">D. The act of gathering as many expensive physical items as possible for personal gain.</button>
+            </div>
+            <div class="rationalization" id="rat-q2"></div>
+        </div>
+
+        <div class="slide" id="q3">
+            <h2>Quiz 3/4</h2>
+            <h1>What does it mean to have a "Coherent" life story?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q3', 'wrong', 'Following everyone else leads to an inauthentic, fragmented life.')">A. Living a life that perfectly matches every trend and expectation of the social crowd.</button>
+                <button class="option-btn" onclick="showFeedback('q3', 'wrong', 'A coherent story requires a connection between your values and your actions.')">B. Having a series of random events happen to you without any personal choice involved.</button>
+                <button class="option-btn" onclick="showFeedback('q3', 'correct', 'Yes. Coherence is the alignment of your time, your work, and your goals.')">C. Ensuring that your daily projects and actions align with your ultimate values and goals.</button>
+                <button class="option-btn" onclick="showFeedback('q3', 'wrong', 'A story requires action and projects, not just passive thinking in isolation.')">D. Sitting in silence and never taking any action so that you never make a mistake.</button>
+            </div>
+            <div class="rationalization" id="rat-q3"></div>
+        </div>
+
+        <div class="slide" id="q4">
+            <h2>Quiz 4/4</h2>
+            <h1>The ultimate "Success of a Soul" is measured by:</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q4', 'wrong', 'Success is an internal existential state, not a bank balance.')">A. The amount of money and physical property one is able to accumulate before death.</button>
+                <button class="option-btn" onclick="showFeedback('q4', 'wrong', 'Power over others is often a distraction from one\'s own internal meaning.')">B. The total number of people one is able to control or influence through social power.</button>
+                <button class="option-btn" onclick="showFeedback('q4', 'correct', 'Exactly. It is the fulfillment of your unique potential and your "Final Why."')">C. The degree to which an individual has authentically fulfilled their chosen life projects.</button>
+                <button class="option-btn" onclick="showFeedback('q4', 'wrong', 'Avoidance of death is impossible; the goal is to live meaningfully within it.')">D. The ability to avoid thinking about death and finitude for as long as possible.</button>
+            </div>
+            <div class="rationalization" id="rat-q4"></div>
+        </div>
+
+        <div class="slide">
+            <h1>Activity: The Existential Manifesto</h1>
+            <p><strong>Reflexive Writing (7-10 Sentences):</strong></p>
+            <ol>
+                <li>Acknowledge your <strong>finitude</strong>: How does knowing your time is limited motivate you?</li>
+                <li>State your <strong>Project</strong>: What is the main work you are building right now?</li>
+                <li>Define your <strong>Final Why</strong>: Where do you want all this to lead?</li>
+                <li>Conclusion: What makes your life meaningful at this very moment?</li>
+            </ol>
+            <div class="discussion-box">
+                "Your life is the masterpiece you are currently painting."
+            </div>
+        </div>
+
+        <div class="progress-dots" id="dots-container"></div>
+        <div class="controls">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)" disabled>Back</button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dotsContainer = document.getElementById('dots-container');
+
+        slides.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dotsContainer.appendChild(dot);
+        });
+
+        function updateUI() {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+            });
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.innerText = currentSlide === slides.length - 1 ? "Finish Week" : "Next";
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            updateUI();
+        }
+
+        function showFeedback(qId, status, message) {
+            const ratBox = document.getElementById('rat-' + qId);
+            ratBox.style.display = 'block';
+            if (status === 'correct') {
+                ratBox.style.backgroundColor = '#d1f2eb';
+                ratBox.style.borderColor = '#00bcd4';
+                ratBox.style.color = '#1b5e20';
+            } else {
+                ratBox.style.backgroundColor = '#fadbd8';
+                ratBox.style.borderColor = '#e74c3c';
+                ratBox.style.color = '#b71c1c';
+            }
+            ratBox.innerHTML = `<strong>${status.toUpperCase()}:</strong> ${message}`;
+        }
+    </script>
+</body>
+</html>

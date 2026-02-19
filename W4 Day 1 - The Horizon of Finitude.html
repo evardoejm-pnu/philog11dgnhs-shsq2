@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 1: The Horizon of Finitude</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #e74c3c; 
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --correct: #1b5e20;
+            --incorrect: #b71c1c;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #2c3e50;
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        #presentation-container {
+            width: 95%;
+            height: 90%;
+            background: var(--bg);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border-radius: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 50px;
+            border-top: 15px solid var(--accent);
+        }
+
+        .slide {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            justify-content: center;
+            animation: fadeIn 0.4s ease-in-out;
+            overflow-y: auto;
+        }
+
+        .slide.active { display: flex; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        h1 { color: var(--primary); font-size: 3.2rem; margin: 0 0 15px 0; line-height: 1.1; }
+        h2 { color: var(--accent); font-size: 1.6rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 2px; }
+        p, li { line-height: 1.5; font-size: 1.6rem; margin-bottom: 12px; }
+        
+        .discussion-box {
+            background: #fdf2f2;
+            border-left: 12px solid var(--accent);
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 12px;
+            font-size: 1.5rem;
+            font-style: italic;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .option-btn {
+            padding: 18px;
+            border: 3px solid #d5dbdb;
+            background: white;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: 0.3s;
+            line-height: 1.3;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .option-btn:hover { background: #fdf2f2; border-color: var(--accent); }
+        
+        .rationalization {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+            font-size: 1.4rem;
+            border: 3px solid transparent;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 40px;
+            right: 50px;
+            display: flex;
+            gap: 20px;
+        }
+
+        button.nav-btn {
+            padding: 18px 45px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        button.nav-btn:hover { background-color: var(--accent); }
+        button.nav-btn:disabled { background-color: #bdc3c7; cursor: not-allowed; }
+
+        .progress-dots {
+            position: absolute;
+            bottom: 60px;
+            left: 50px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .dot { width: 14px; height: 14px; background: #ddd; border-radius: 50%; transition: 0.3s; }
+        .dot.active { background: var(--accent); width: 45px; border-radius: 20px; }
+    </style>
+</head>
+<body>
+
+    <div id="presentation-container">
+        <div class="slide active">
+            <h2>The Person and Death</h2>
+            <h1>The Horizon of Finitude</h1>
+            
+            <div class="discussion-box">
+                "To philosophize is to learn how to die." — Montaigne
+            </div>
+            <p>Objective: Recognize how the awareness of our limited time (finitude) creates the possibility for a meaningful life.</p>
+        </div>
+
+        <div class="slide">
+            <h1>Heidegger’s Concept</h1>
+            <p>Martin Heidegger argued that humans are <strong>"Being-towards-death."</strong></p>
+            
+            <ul>
+                <li>Death is not an "end" that happens later; it is a constant possibility here and now.</li>
+                <li>Awareness of death pulls us out of the <strong>"They" (Das Man)</strong>—the crowd that tells us how to live.</li>
+                <li>Recognizing our finitude makes our choices urgent and unique.</li>
+            </ul>
+        </div>
+
+        <div class="slide">
+            <h1>Living Authentically</h1>
+            <p>We have two ways of facing our limited time:</p>
+            <div class="discussion-box">
+                <strong>Inauthentic:</strong> Distracting ourselves with trivial things to forget that we will die.
+            </div>
+            <div class="discussion-box">
+                <strong>Authentic:</strong> Accepting our finitude and taking total responsibility for our choices.
+            </div>
+            <p>Death is the "non-relational" possibility: No one can take your death away from you, just as no one can live your life for you.</p>
+        </div>
+
+        <div class="slide" id="q1">
+            <h2>Quiz 1/4</h2>
+            <h1>How does Heidegger define "Being-towards-death"?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q1', 'wrong', 'This view treats death as a future event rather than a present reality.')">A. It is the fearful expectation of a biological end that occurs at old age.</button>
+                <button class="option-btn" onclick="showFeedback('q1', 'correct', 'Correct. It is the realization that death is always a part of our existence.')">B. It is a state of awareness where we recognize death as our most personal possibility.</button>
+                <button class="option-btn" onclick="showFeedback('q1', 'wrong', 'Philosophy seeks to understand life through death, not avoid the topic.')">C. It is a psychological distraction used to avoid thinking about our daily responsibilities.</button>
+                <button class="option-btn" onclick="showFeedback('q1', 'wrong', 'Heidegger focuses on the individual experience of finitude, not communal death.')">D. It is a communal ritual where society gathers to mourn the passing of ancient traditions.</button>
+            </div>
+            <div class="rationalization" id="rat-q1"></div>
+        </div>
+
+        <div class="slide" id="q2">
+            <h2>Quiz 2/4</h2>
+            <h1>What characterizes an "Inauthentic" existence?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q2', 'wrong', 'Taking responsibility is the hallmark of an authentic existential life.')">A. Taking full responsibility for every decision made regardless of social pressure.</button>
+                <button class="option-btn" onclick="showFeedback('q2', 'wrong', 'Solitude is often used to find the authentic self away from the crowd.')">B. Seeking total isolation from society to discover one\'s hidden and inner truth.</button>
+                <button class="option-btn" onclick="showFeedback('q2', 'correct', 'Right. Following the crowd (Das Man) is a way to avoid the self.')">C. Following the crowd and doing what "they" do to avoid the reality of our finitude.</button>
+                <button class="option-btn" onclick="showFeedback('q2', 'wrong', 'Acknowledging death is the first step toward living authentically.')">D. Acknowledging that our time is limited and choosing projects that reflect our values.</button>
+            </div>
+            <div class="rationalization" id="rat-q2"></div>
+        </div>
+
+        <div class="slide" id="q3">
+            <h2>Quiz 3/4</h2>
+            <h1>Why is death considered "non-relational"?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q3', 'wrong', 'The term refers to the individual nature of death, not its timing.')">A. Because it is a random event that does not relate to our current health status.</button>
+                <button class="option-btn" onclick="showFeedback('q3', 'wrong', 'Death definitely affects our relationships, but that is not the philosophical definition.')">B. Because it only happens to people who do not have strong social and family ties.</button>
+                <button class="option-btn" onclick="showFeedback('q3', 'correct', 'Yes. Death is the one thing you must do entirely on your own.')">C. Because no one else can die for you; it is a possibility that belongs only to you.</button>
+                <button class="option-btn" onclick="showFeedback('q3', 'wrong', 'Intersubjectivity is about life; Heidegger sees death as the limit of that bond.')">D. Because it is a shared experience that requires the presence of others to be real.</button>
+            </div>
+            <div class="rationalization" id="rat-q3"></div>
+        </div>
+
+        <div class="slide" id="q4">
+            <h2>Quiz 4/4</h2>
+            <h1>How does awareness of death lead to a meaningful life?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q4', 'wrong', 'Finitude is meant to inspire action, not paralyzing fear or sorrow.')">A. It makes us so afraid of the future that we stop making any significant choices.</button>
+                <button class="option-btn" onclick="showFeedback('q4', 'correct', 'Correct. Scarcity of time creates the value of our moments.')">B. It forces us to stop wasting time and choose projects that truly matter to us.</button>
+                <button class="option-btn" onclick="showFeedback('q4', 'wrong', 'Meaning is found through recognizing limits, not through total distraction.')">C. It encourages us to spend all our money and resources on temporary pleasures.</button>
+                <button class="option-btn" onclick="showFeedback('q4', 'wrong', 'The focus is on how we live now, not the biological details of dying.')">D. It provides a biological explanation for why the human body eventually fails.</button>
+            </div>
+            <div class="rationalization" id="rat-q4"></div>
+        </div>
+
+        <div class="slide">
+            <h1>Activity: The 80th Birthday</h1>
+            <p><strong>Reflexive Writing (5-7 Sentences):</strong></p>
+            <ol>
+                <li>Imagine you are 80 years old looking back at your current self.</li>
+                <li>What is one thing you are doing now just because "others" expect it?</li>
+                <li>What is one project you would start if you fully embraced your finitude?</li>
+                <li>How does this awareness change your perspective on today?</li>
+            </ol>
+            <div class="discussion-box">
+                "It is not that we have a short time to live, but that we waste a lot of it." — Seneca
+            </div>
+        </div>
+
+        <div class="progress-dots" id="dots-container"></div>
+        <div class="controls">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)" disabled>Back</button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dotsContainer = document.getElementById('dots-container');
+
+        slides.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dotsContainer.appendChild(dot);
+        });
+
+        function updateUI() {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+            });
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.innerText = currentSlide === slides.length - 1 ? "Start Activity" : "Next";
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            updateUI();
+        }
+
+        function showFeedback(qId, status, message) {
+            const ratBox = document.getElementById('rat-' + qId);
+            ratBox.style.display = 'block';
+            if (status === 'correct') {
+                ratBox.style.backgroundColor = '#d4efdf';
+                ratBox.style.borderColor = '#27ae60';
+                ratBox.style.color = '#1b5e20';
+            } else {
+                ratBox.style.backgroundColor = '#fadbd8';
+                ratBox.style.borderColor = '#e74c3c';
+                ratBox.style.color = '#b71c1c';
+            }
+            ratBox.innerHTML = `<strong>${status.toUpperCase()}:</strong> ${message}`;
+        }
+    </script>
+</body>
+</html>

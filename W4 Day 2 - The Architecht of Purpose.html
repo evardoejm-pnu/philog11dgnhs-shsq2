@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 2: The Architecture of Purpose</title>
+    <style>
+        :root {
+            --primary: #283747;
+            --accent: #f39c12; /* Amber for creative construction */
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --correct: #1b5e20;
+            --incorrect: #b71c1c;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #283747;
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        #presentation-container {
+            width: 95%;
+            height: 90%;
+            background: var(--bg);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border-radius: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 50px;
+            border-top: 15px solid var(--accent);
+        }
+
+        .slide {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            justify-content: center;
+            animation: fadeIn 0.4s ease-in-out;
+            overflow-y: auto;
+        }
+
+        .slide.active { display: flex; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        h1 { color: var(--primary); font-size: 3.2rem; margin: 0 0 15px 0; line-height: 1.1; }
+        h2 { color: var(--accent); font-size: 1.6rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 2px; }
+        p, li { line-height: 1.5; font-size: 1.6rem; margin-bottom: 12px; }
+        
+        .discussion-box {
+            background: #fef9e7;
+            border-left: 12px solid var(--accent);
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 12px;
+            font-size: 1.5rem;
+            font-style: italic;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .option-btn {
+            padding: 18px;
+            border: 3px solid #d5dbdb;
+            background: white;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1.15rem;
+            font-weight: 600;
+            transition: 0.3s;
+            line-height: 1.3;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .option-btn:hover { background: #fef9e7; border-color: var(--accent); }
+        
+        .rationalization {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+            font-size: 1.4rem;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 40px;
+            right: 50px;
+            display: flex;
+            gap: 20px;
+        }
+
+        button.nav-btn {
+            padding: 18px 45px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        button.nav-btn:hover { background-color: var(--accent); }
+        button.nav-btn:disabled { background-color: #bdc3c7; cursor: not-allowed; }
+
+        .progress-dots {
+            position: absolute;
+            bottom: 60px;
+            left: 50px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .dot { width: 14px; height: 14px; background: #ddd; border-radius: 50%; transition: 0.3s; }
+        .dot.active { background: var(--accent); width: 45px; border-radius: 20px; }
+    </style>
+</head>
+<body>
+
+    <div id="presentation-container">
+        <div class="slide active">
+            <h2>Human Freedom</h2>
+            <h1>The Architecture of Purpose</h1>
+            <div class="discussion-box">
+                "Man is nothing else but that which he makes of himself." — Jean-Paul Sartre
+            </div>
+            <p>Objective: Define the life projects you truly want to achieve and distinguish between "Facticity" and "Transcendence."</p>
+        </div>
+
+        <div class="slide">
+            <h1>Existence Precedes Essence</h1>
+            <p>Unlike a tool (like a scissors) which is made with a specific purpose, humans are born <strong>without</strong> a pre-set blueprint.</p>
+            <ul>
+                <li>We first <strong>exist</strong>, and then we define our <strong>essence</strong>.</li>
+                <li>We are "condemned to be free" because we must choose who we are.</li>
+                <li>Our purpose is not found; it is <strong>constructed</strong> through action.</li>
+            </ul>
+        </div>
+
+        <div class="slide">
+            <h1>The Self as a Project</h1>
+            
+            <p>Sartre identifies two parts of the human condition:</p>
+            <ul>
+                <li><strong>Facticity:</strong> The unchangeable facts (your birthplace, your height, your past).</li>
+                <li><strong>Transcendence:</strong> Your ability to move beyond those facts through your <strong>Projects</strong>.</li>
+            </ul>
+            <div class="discussion-box">
+                A project is a commitment to a goal that gives your life direction. What project are you building right now?
+            </div>
+        </div>
+
+        <div class="slide" id="q1">
+            <h2>Quiz 1/4</h2>
+            <h1>What does Sartre mean by "Existence precedes Essence"?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q1', 'wrong', 'This describes objects like tools, but Sartre says humans are different.')">A. Humans are born with a clear and unchangeable purpose defined by nature.</button>
+                <button class="option-btn" onclick="showFeedback('q1', 'wrong', 'Genetics falls under facticity, but essence is created through free action.')">B. Our biological and genetic makeup determines the final outcome of our lives.</button>
+                <button class="option-btn" onclick="showFeedback('q1', 'correct', 'Correct. We are responsible for defining our own meaning after we are born.')">C. We exist first as a blank slate and must define our meaning through choices.</button>
+                <button class="option-btn" onclick="showFeedback('q1', 'wrong', 'Essence is about identity, not about physical survival or basic instincts.')">D. Society must provide a set of essential rules before an individual can exist.</button>
+            </div>
+            <div class="rationalization" id="rat-q1"></div>
+        </div>
+
+        <div class="slide" id="q2">
+            <h2>Quiz 2/4</h2>
+            <h1>Which of these is an example of "Facticity"?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q2', 'wrong', 'Choosing a career is an exercise in transcendence and future-planning.')">A. The decision to pursue a career in medicine despite having low grades.</button>
+                <button class="option-btn" onclick="showFeedback('q2', 'correct', 'Right. These are the "givens" of your life that you did not choose yourself.')">B. The specific time and geographical location where you were born into the world.</button>
+                <button class="option-btn" onclick="showFeedback('q2', 'wrong', 'Making a promise is a project that involves your future freedom and agency.')">C. Making a promise to a friend that you will help them with their school work.</button>
+                <button class="option-btn" onclick="showFeedback('q2', 'wrong', 'Rejecting a tradition is a way to transcend your cultural background.')">D. The act of rejecting a traditional family belief to start a new personal path.</button>
+            </div>
+            <div class="rationalization" id="rat-q2"></div>
+        </div>
+
+        <div class="slide" id="q3">
+            <h2>Quiz 3/4</h2>
+            <h1>How does "Transcendence" relate to your life projects?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q3', 'wrong', 'Transcendence is about looking forward, not remaining stuck in the past.')">A. It is the ability to stay exactly the same throughout your entire existence.</button>
+                <button class="option-btn" onclick="showFeedback('q3', 'wrong', 'Transcendence is a human ability, not a supernatural or magical power.')">B. It is a magical power that allows humans to ignore the laws of physics entirely.</button>
+                <button class="option-btn" onclick="showFeedback('q3', 'correct', 'Correct. It is the "future-oriented" part of being human.')">C. It is the capacity to move beyond your current situation toward a future goal.</button>
+                <button class="option-btn" onclick="showFeedback('q3', 'wrong', 'Accepting limits without acting is a failure to exercise transcendence.')">D. It is the passive acceptance of every social rule without ever questioning it.</button>
+            </div>
+            <div class="rationalization" id="rat-q3"></div>
+        </div>
+
+        <div class="slide" id="q4">
+            <h2>Quiz 4/4</h2>
+            <h1>Why did Sartre say humans are "Condemned to be free"?</h1>
+            <div class="quiz-options">
+                <button class="option-btn" onclick="showFeedback('q4', 'wrong', 'Freedom is not a legal right in this context, but an existential burden.')">A. Because freedom is a legal right that is granted by every democratic government.</button>
+                <button class="option-btn" onclick="showFeedback('q4', 'wrong', 'Sartre believes we are responsible for our choices even in difficult times.')">B. Because we are only free when we are not facing any external social pressure.</button>
+                <button class="option-btn" onclick="showFeedback('q4', 'correct', 'Exactly. You cannot escape the weight of having to make your own choices.')">C. Because we did not create ourselves, yet we are responsible for every choice.</button>
+                <button class="option-btn" onclick="showFeedback('q4', 'wrong', 'Condemnation implies a burden, while being lucky implies a gift without weight.')")">D. Because we are lucky to live in a world where every choice is made for us.</button>
+            </div>
+            <div class="rationalization" id="rat-q4"></div>
+        </div>
+
+        <div class="slide">
+            <h1>Activity: The Blueprint of Projects</h1>
+            <p><strong>Written Task (5-7 Sentences):</strong></p>
+            <ol>
+                <li>List one "Facticity" (something you cannot change about your situation).</li>
+                <li>Define one "Life Project" you want to achieve (it must be a commitment, not just a wish).</li>
+                <li>How does this project help you "Transcend" your facticity?</li>
+                <li>If you fail at this project, would your life still have meaning? Why?</li>
+            </ol>
+            <div class="discussion-box">
+                "We are our choices."
+            </div>
+        </div>
+
+        <div class="progress-dots" id="dots-container"></div>
+        <div class="controls">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)" disabled>Back</button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dotsContainer = document.getElementById('dots-container');
+
+        slides.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dotsContainer.appendChild(dot);
+        });
+
+        function updateUI() {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+            });
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.innerText = currentSlide === slides.length - 1 ? "Start Activity" : "Next";
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            updateUI();
+        }
+
+        function showFeedback(qId, status, message) {
+            const ratBox = document.getElementById('rat-' + qId);
+            ratBox.style.display = 'block';
+            if (status === 'correct') {
+                ratBox.style.backgroundColor = '#d4efdf';
+                ratBox.style.borderColor = '#27ae60';
+                ratBox.style.color = '#1b5e20';
+            } else {
+                ratBox.style.backgroundColor = '#fadbd8';
+                ratBox.style.borderColor = '#e74c3c';
+                ratBox.style.color = '#b71c1c';
+            }
+            ratBox.innerHTML = `<strong>${status.toUpperCase()}:</strong> ${message}`;
+        }
+    </script>
+</body>
+</html>
