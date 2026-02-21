@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philosophy Reviewer - Part 5</title>
+    <style>
+        :root {
+            --bg-crimson: #4a0404; 
+            --accent-gold: #d4af37; 
+            --text-light: #ffffff; 
+            --card-bg: rgba(25, 0, 0, 0.9);
+            --correct: #27ae60;
+            --incorrect: #c0392b;
+        }
+        body { 
+            font-family: 'Segoe UI', Verdana, sans-serif; 
+            background-color: var(--bg-crimson); 
+            color: var(--text-light);
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+        }
+        #presentation-container { 
+            width: 95%; 
+            max-width: 1050px; 
+            height: 90vh; 
+            background: var(--card-bg); 
+            border: 3px solid var(--accent-gold);
+            border-radius: 10px; 
+            box-shadow: 0 0 30px rgba(0,0,0,0.8); 
+            position: relative; 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        .slide { display: none; padding: 40px; flex-grow: 1; overflow-y: auto; }
+        .slide.active { display: flex; flex-direction: column; justify-content: flex-start; animation: fadeIn 0.4s; }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        h2 { 
+            color: var(--accent-gold); 
+            font-size: 2.2rem; 
+            margin-bottom: 20px; 
+            border-bottom: 2px solid var(--accent-gold);
+            padding-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .content { font-size: 1.4rem; line-height: 1.4; }
+        .translation { font-style: italic; color: #bdc3c7; font-size: 1.2rem; display: block; margin-bottom: 10px; }
+        strong { color: var(--accent-gold); }
+
+        .controls { 
+            padding: 20px; 
+            background: rgba(0, 0, 0, 0.6); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-top: 1px solid var(--accent-gold);
+        }
+        button.nav-btn { 
+            padding: 10px 30px; 
+            cursor: pointer; 
+            border: 2px solid var(--accent-gold); 
+            background: var(--accent-gold); 
+            color: var(--bg-crimson); 
+            font-size: 1.1rem;
+            font-weight: bold; 
+            border-radius: 5px;
+            transition: 0.3s; 
+        }
+        button.nav-btn:hover:not(:disabled) { background: transparent; color: var(--accent-gold); }
+        button:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        .quiz-option { 
+            display: block; 
+            width: 100%; 
+            padding: 12px 20px; 
+            margin: 8px 0; 
+            text-align: left; 
+            background: rgba(255, 255, 255, 0.05); 
+            border: 1px solid var(--accent-gold); 
+            color: white;
+            font-size: 1.1rem; 
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .rationalization { 
+            margin-top: 15px; 
+            padding: 15px; 
+            border-radius: 8px;
+            display: none; 
+            font-size: 1.1rem;
+            border: 1px solid white;
+        }
+        .correct-box { background-color: var(--correct); }
+        .incorrect-box { background-color: var(--incorrect); }
+        .prog-bar { font-size: 1.2rem; color: var(--accent-gold); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div id="presentation-container">
+    <div class="slide active">
+        <h2>Part 5: Types of Societies</h2>
+        <div class="content">
+            <p>How the way we live changes how we think:</p>
+            <span class="translation"><i>Kung paano binabago ng ating paraan ng pamumuhay ang ating paraan ng pag-iisip:</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Industrial Society</h2>
+        <div class="content">
+            <p><strong>Industrial Society:</strong> Valued efficiency and production. Humans often felt like "cogs in a machine" (Rationalization).</p>
+            <span class="translation"><i>Industrial Society: Pinahahalagahan ang pagiging episyente at produksyon. Ang mga tao ay madalas na nakakaramdam na parang "turnilyo sa isang makina" (Rationalization).</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Virtual Society</h2>
+        <div class="content">
+            <p><strong>Virtual Society:</strong> Digital connection is high, but deep, local communal roots are often lost.</p>
+            <span class="translation"><i>Virtual Society: Mataas ang digital na koneksyon, ngunit ang malalim at lokal na pinag-ugatan sa komunidad ay madalas na nawawala.</i></span>
+            <p>We often struggle with the "Looking-Glass Self" on social media.</p>
+            <span class="translation"><i>Madalas tayong nahihirapan sa "Looking-Glass Self" sa social media.</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Reviewer Tip</h2>
+        <div class="content">
+            <p>When answering philosophy questions, always ask yourself:</p>
+            <span class="translation"><i>Kapag sumasagot sa mga tanong sa pilosopiya, laging itanong sa sarili:</i></span>
+            <p>"Is this person acting out of freedom (Authenticity), or are they just following the crowd (Das Man)?"</p>
+            <span class="translation"><i>"Ang tao ba ay kumikilos nang may kalayaan (Authenticity), o sumusunod lang sila sa uso o sa karamihan (Das Man)?"</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Reviewer Tip</h2>
+        <div class="content">
+            <p>"Are they treating people as humans (Thou), or as objects (It)?"</p>
+            <span class="translation"><i>"Itinuturing ba nila ang mga tao bilang tao (Thou), o bilang mga bagay (It)?"</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Formative Assessment 1</h2>
+        <div class="content">
+            <p>In an Industrial Society, the process of "Rationalization" primarily leads individuals to feel that:</p>
+            <span class="translation"><i>Sa isang Industrial Society, ang proseso ng "Rationalization" ay nagpaparamdam sa mga tao na:</i></span>
+            <div class="quiz-container">
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. This describes the looking-glass self in a virtual society.')">A. Their identity is defined by the number of digital interactions they receive.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, true, 'Correct! Rationalization in industrial societies often makes humans feel like replaceable cogs in a machine.')">B. They are merely replaceable components or "cogs" in a large production system.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. This describes a pre-industrial or local communal society.')">C. Their deep communal roots and local traditions are the most important values.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. This is a goal of existentialism, not a characteristic of industrial rationalization.')">D. They have achieved the ultimate level of individual agency and authenticity.')</button>
+            </div>
+            <div class="rationalization"></div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Formative Assessment 2</h2>
+        <div class="content">
+            <p>A person feels intense loneliness despite having thousands of "friends" and "followers" online. This paradox is a common characteristic of a:</p>
+            <span class="translation"><i>Ang isang tao ay nakakaramdam ng matinding kalungkutan sa kabila ng libu-libong "friends" online. Ito ay katangian ng:</i></span>
+            <div class="quiz-container">
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Industrial society focuses on production and physical labor.')">A. Industrial Society focused on the efficiency of physical production units.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Tribal societies have deep, physical communal roots.')">B. Tribal Society where shared physical rituals and local traditions are central.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, true, 'Correct! Virtual societies have high digital connection but often lack deep, physical communal roots.')">C. Virtual Society where digital connections replace deep, local communal roots.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. This is not a type of society mentioned in the reviewer.')">D. Authenticity Society where every individual acts according to their true self.')</button>
+            </div>
+            <div class="rationalization"></div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Formative Assessment 3</h2>
+        <div class="content">
+            <p>Using the "Reviewer Tip," how would you categorize a person who chooses a college degree only because it is the "trending" and "popular" choice among their peers?</p>
+            <span class="translation"><i>Gamit ang "Reviewer Tip," paano mo ikakategorya ang taong pumili ng kurso dahil lang ito ang "trending"?</i></span>
+            <div class="quiz-container">
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Authenticity means choosing for oneself, not following the crowd.')">A. Acting with Authenticity by following the social structure of the time.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, true, 'Correct! Following the crowd without personal reflection is acting as "Das Man" (the they-self).')">B. Following "Das Man" or the crowd instead of exercising personal freedom.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. An I-Thou relationship refers to how one treats another person, not a career choice.')">C. Engaging in an I-Thou relationship with the broader digital community.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. This describes a specific way of finding meaning, not the act of following a crowd.')">D. Demonstrating Attitudinal Value by accepting the popular social choice.')</button>
+            </div>
+            <div class="rationalization"></div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Conclusion</h2>
+        <div class="content">
+            <p>You have completed the full study guide!</p>
+            <span class="translation"><i>Natapos mo na ang buong study guide!</i></span>
+            <p>Always remember to distinguish between being a "subject" and an "object," and to choose "authenticity" over "bad faith." Good luck on your exam!</p>
+            <span class="translation"><i>Laging tandaan na kilalanin ang pagkakaiba ng "subject" at "object," at piliin ang "authenticity" kaysa sa "bad faith." Good luck sa iyong exam!</i></span>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="prevBtn" class="nav-btn" onclick="moveSlide(-1)" disabled>PREVIOUS</button>
+        <div class="prog-bar" id="prog">1 / 9</div>
+        <button id="nextBtn" class="nav-btn" onclick="moveSlide(1)">NEXT</button>
+    </div>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const progText = document.getElementById('prog');
+
+    function moveSlide(step) {
+        slides[currentSlide].classList.remove('active');
+        currentSlide += step;
+        slides[currentSlide].classList.add('active');
+        
+        document.getElementById('prevBtn').disabled = (currentSlide === 0);
+        document.getElementById('nextBtn').disabled = (currentSlide === slides.length - 1);
+        
+        progText.innerText = `${currentSlide + 1} / ${slides.length}`;
+    }
+
+    function handleQuiz(btn, isCorrect, text) {
+        const slide = btn.closest('.slide');
+        const ratBox = slide.querySelector('.rationalization');
+        ratBox.innerHTML = text;
+        ratBox.className = 'rationalization ' + (isCorrect ? 'correct-box' : 'incorrect-box');
+        ratBox.style.display = 'block';
+    }
+</script>
+
+</body>
+</html>

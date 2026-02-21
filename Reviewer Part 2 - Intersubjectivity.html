@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philosophy Reviewer - Part 2</title>
+    <style>
+        :root {
+            --bg-crimson: #4a0404; 
+            --accent-gold: #d4af37; 
+            --text-light: #ffffff; 
+            --card-bg: rgba(25, 0, 0, 0.9);
+            --correct: #27ae60;
+            --incorrect: #c0392b;
+        }
+        body { 
+            font-family: 'Segoe UI', Verdana, sans-serif; 
+            background-color: var(--bg-crimson); 
+            color: var(--text-light);
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+        }
+        #presentation-container { 
+            width: 95%; 
+            max-width: 1050px; 
+            height: 90vh; 
+            background: var(--card-bg); 
+            border: 3px solid var(--accent-gold);
+            border-radius: 10px; 
+            box-shadow: 0 0 30px rgba(0,0,0,0.8); 
+            position: relative; 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        .slide { display: none; padding: 40px; flex-grow: 1; overflow-y: auto; }
+        .slide.active { display: flex; flex-direction: column; justify-content: flex-start; animation: fadeIn 0.4s; }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        h2 { 
+            color: var(--accent-gold); 
+            font-size: 2.2rem; 
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--accent-gold);
+            padding-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .content { font-size: 1.4rem; line-height: 1.4; }
+        .translation { font-style: italic; color: #bdc3c7; font-size: 1.2rem; display: block; margin-bottom: 10px; }
+        strong { color: var(--accent-gold); }
+
+        .controls { 
+            padding: 20px; 
+            background: rgba(0, 0, 0, 0.6); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-top: 1px solid var(--accent-gold);
+        }
+        button.nav-btn { 
+            padding: 10px 30px; 
+            cursor: pointer; 
+            border: 2px solid var(--accent-gold); 
+            background: var(--accent-gold); 
+            color: var(--bg-crimson); 
+            font-size: 1.1rem;
+            font-weight: bold; 
+            border-radius: 5px;
+            transition: 0.3s; 
+        }
+        button.nav-btn:hover:not(:disabled) { background: transparent; color: var(--accent-gold); }
+        button:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        .quiz-option { 
+            display: block; 
+            width: 100%; 
+            padding: 12px 20px; 
+            margin: 8px 0; 
+            text-align: left; 
+            background: rgba(255, 255, 255, 0.05); 
+            border: 1px solid var(--accent-gold); 
+            color: white;
+            font-size: 1.1rem; 
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .rationalization { 
+            margin-top: 15px; 
+            padding: 15px; 
+            border-radius: 8px;
+            display: none; 
+            font-size: 1.1rem;
+            border: 1px solid white;
+        }
+        .correct-box { background-color: var(--correct); }
+        .incorrect-box { background-color: var(--incorrect); }
+        .prog-bar { font-size: 1.2rem; color: var(--accent-gold); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div id="presentation-container">
+    <div class="slide active">
+        <h2>Part 2: Intersubjectivity (The "I" and the "Other")</h2>
+        <div class="content">
+            <p>Intersubjectivity is the shared awareness and understanding between persons.</p>
+            <span class="translation"><i>Ang intersubhetibidad ay ang ibinabahaging kamalayan at pag-unawa sa pagitan ng mga tao.</i></span>
+            <p>It is not just seeing someone, but recognizing them as a fellow human being with their own thoughts and feelings.</p>
+            <span class="translation"><i>Hindi lang ito basta pagkakita sa isang tao, kundi ang pagkilala sa kanila bilang kapwa tao na may sariling isip at damdamin.</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>1. Martin Buber: I-Thou vs. I-It</h2>
+        <div class="content">
+            <p><strong>I-Thou (Ich-Du):</strong> You treat the other person as a "Subject"—a unique human being.</p>
+            <span class="translation"><i>Itinuturing mo ang ibang tao bilang isang "Paksa" o "Subject"—isang natatanging nilalang.</i></span>
+            <p>You engage in a genuine dialogue where you listen and respect their presence.</p>
+            <span class="translation"><i>Nakikibahagi ka sa isang tunay na diyalogo kung saan nakikinig ka at iginagalang ang kanilang presensya.</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>1. Martin Buber: I-Thou vs. I-It</h2>
+        <div class="content">
+            <p><strong>I-It (Ich-Es):</strong> You treat the other person as an "Object"—a tool or a means to get what you want.</p>
+            <span class="translation"><i>Itinuturing mo ang ibang tao bilang isang "Bagay" o "Object"—isang kasangkapan o paraan para makuha ang gusto mo.</i></span>
+            <p><strong>Example:</strong> Being nice to a classmate only so they will let you copy their homework.</p>
+            <span class="translation"><i>Halimbawa: Pagiging mabait sa kaklase para lang pakopyahin ka ng assignment.</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>2. Emmanuel Levinas: The Face of the Other</h2>
+        <div class="content">
+            <p>When we look at the "Face" of another person, we see a command: "Do not kill me" or "Take care of me."</p>
+            <span class="translation"><i>Kapag tinitingnan natin ang "Mukha" ng ibang tao, nakikita natin ang isang utos: "Huwag mo akong patayin" o "Alagaan mo ako."</i></span>
+            <p>The Other is "Infinite"—we can never fully understand or "own" who they are.</p>
+            <span class="translation"><i>Ang "Iba" ay "Infinite"—hindi natin kailanman lubos na mauunawaan o "ma-aangkin" kung sino talaga sila.</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Totalizing vs. Infinity</h2>
+        <div class="content">
+            <p><strong>Totalizing:</strong> Reducing a person to a single label or category (e.g., "He is just a janitor").</p>
+            <span class="translation"><i>Paglilimita sa isang tao sa isang label o kategorya (hal. "Dyanitor lang siya").</i></span>
+            <p>This ignores the "Infinity" of their human personhood.</p>
+            <span class="translation"><i>Binabalewala nito ang "Infinity" ng kanilang pagkatao.</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>3. Obstacles to Dialogue</h2>
+        <div class="content">
+            <p><strong>Seeming:</strong> Acting in a certain way to look good to others, rather than being your true self.</p>
+            <span class="translation"><i>Pagkilos sa paraang magmumukhang mabuti sa iba, imbes na maging tunay na sarili.</i></span>
+            <p><strong>Speechifying:</strong> Talking at people to hear yourself talk or to win an argument, rather than talking with them.</p>
+            <span class="translation"><i>Pakikipag-usap sa tao para lang marinig ang sarili o manalo sa debate, imbes na makipag-usap sa kanila.</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>3. Obstacles to Dialogue</h2>
+        <div class="content">
+            <p><strong>Imposition:</strong> Forcing your own beliefs and values onto another person without considering their perspective.</p>
+            <span class="translation"><i>Pagpilit ng sariling paniniwala at prinsipyo sa ibang tao nang hindi isinasaalang-alang ang kanilang pananaw.</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Formative Assessment 1</h2>
+        <div class="content">
+            <p>A manager speaks to their employees using polite words, but internally views them only as units of production to meet a monthly quota. According to Martin Buber, this relationship is:</p>
+            <span class="translation"><i>Ang isang manager ay magalang makipag-usap, ngunit ang tingin niya sa mga empleyado ay mga makina lang para maabot ang quota. Ayon kay Martin Buber, ito ay:</i></span>
+            <div class="quiz-container">
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. I-Thou requires recognizing the employee as a unique subject, not just a producer.')">A. An I-Thou relationship based on professional respect.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, true, 'Correct! The manager is treating the employees as tools or objects (It) to achieve a specific goal (quota).')">B. An I-It relationship where people are used as means.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Totalizing is a concept from Levinas, though related, Buber focuses on the I-It dynamic.')">C. A totalizing relationship that denies their infinity.')</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Intersubjectivity requires shared awareness; here the awareness is one-sided.')">D. A genuine intersubjective awareness in the workplace.')</button>
+            </div>
+            <div class="rationalization"></div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Formative Assessment 2</h2>
+        <div class="content">
+            <p>When you see a homeless person and immediately think "they are lazy" without knowing their story, you are committing what Emmanuel Levinas calls:</p>
+            <span class="translation"><i>Kapag nakakita ka ng pulubi at agad naisip na "tamad siya" nang hindi alam ang kwento niya, ginagawa mo ang tinatawag ni Emmanuel Levinas na:</i></span>
+            <div class="quiz-container">
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Imposition is forcing your beliefs, while this is about reducing their identity.')">A. The imposition of personal values on the marginalized.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Seeming is about how you present yourself, not how you view others.')">B. The act of seeming to be compassionate toward the poor.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, true, 'Correct! Totalizing is reducing a complex human being to a single label or category (like "lazy").')">C. The totalizing of the Other into a single social label.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Recognizing infinity would mean acknowledging you don\'t know their full story.')">D. The recognition of the infinity within the human face.')</button>
+            </div>
+            <div class="rationalization"></div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Formative Assessment 3</h2>
+        <div class="content">
+            <p>During a debate, a student waits for their opponent to finish speaking only so they can use their next "rebuttal" to win, ignoring the points made. This is:</p>
+            <span class="translation"><i>Sa isang debate, naghihintay lang ang estudyante na matapos ang kalaban para makapag-rebuttal at manalo, hindi nakikinig sa punto. Ito ay:</i></span>
+            <div class="quiz-container">
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Dialogue requires mutual listening; here, only one side is being heard.')">A. A constructive dialogue meant to find the objective truth.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, true, 'Correct! Speechifying is talking AT people to win or be heard, rather than talking WITH them to understand.')">B. The obstacle of speechifying to dominate the conversation.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Seeming is about pretending to be something you are not; this is about communication style.')">C. The act of seeming to be an intellectual and fair debater.')</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. While it could lead to imposition, the act of "talking at" others is specifically speechifying.')">D. The imposition of one\'s logic over the Other\'s freedom.')</button>
+            </div>
+            <div class="rationalization"></div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Formative Assessment 4</h2>
+        <div class="content">
+            <p>According to Levinas, what is the ethical significance of the "Face" of the Other in a community?</p>
+            <span class="translation"><i>Ayon kay Levinas, ano ang etikal na kahalagahan ng "Mukha" ng Iba sa isang komunidad?</i></span>
+            <div class="quiz-container">
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Totalizing is an ethical failure, not the goal of the Face.')">A. It allows us to totalize people so we can categorize them.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Levinas believes we can NEVER fully understand the other.')">B. It serves as a mirror that helps us fully understand ourselves.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, true, 'Correct! The Face presents an ethical demand that makes us responsible for the well-being of the Other.')">C. It carries an unspoken command to be responsible for them.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. The Face demands we treat them as Thou, not as an It.')">D. It is a tool for the I-It relationship to function efficiently.')</button>
+            </div>
+            <div class="rationalization"></div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Formative Assessment 5</h2>
+        <div class="content">
+            <p>Which of the following is an example of "Seeming" in the context of digital social media intersubjectivity?</p>
+            <span class="translation"><i>Alin sa mga sumusunod ang halimbawa ng "Seeming" sa konteksto ng social media?</i></span>
+            <div class="quiz-container">
+                <button class="quiz-option" onclick="handleQuiz(this, true, 'Correct! Seeming is acting or presenting a curated version of yourself to look good to others.')">A. Posting only the "perfect" parts of your life to get likes.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Totalizing is about how you view others, not how you present yourself.')">B. Unfriending someone because you disagree with their views.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. This is an act of agency or dialogue, not necessarily seeming.')">C. Sharing an educational article to help your followers learn.')</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. This is a Thou relationship, which is the opposite of seeming.')">D. Having a deep, private conversation via video call with a friend.')</button>
+            </div>
+            <div class="rationalization"></div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="prevBtn" class="nav-btn" onclick="moveSlide(-1)" disabled>PREVIOUS</button>
+        <div class="prog-bar" id="prog">1 / 12</div>
+        <button id="nextBtn" class="nav-btn" onclick="moveSlide(1)">NEXT</button>
+    </div>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const progText = document.getElementById('prog');
+
+    function moveSlide(step) {
+        slides[currentSlide].classList.remove('active');
+        currentSlide += step;
+        slides[currentSlide].classList.add('active');
+        
+        document.getElementById('prevBtn').disabled = (currentSlide === 0);
+        document.getElementById('nextBtn').disabled = (currentSlide === slides.length - 1);
+        
+        progText.innerText = `${currentSlide + 1} / ${slides.length}`;
+    }
+
+    function handleQuiz(btn, isCorrect, text) {
+        const slide = btn.closest('.slide');
+        const ratBox = slide.querySelector('.rationalization');
+        ratBox.innerHTML = text;
+        ratBox.className = 'rationalization ' + (isCorrect ? 'correct-box' : 'incorrect-box');
+        ratBox.style.display = 'block';
+    }
+</script>
+
+</body>
+</html>

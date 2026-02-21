@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philosophy Reviewer - Part 1 (Tagalog Edition)</title>
+    <style>
+        :root {
+            --bg-crimson: #4a0404; 
+            --accent-gold: #d4af37; 
+            --text-light: #ffffff; 
+            --card-bg: rgba(25, 0, 0, 0.9);
+            --correct: #27ae60;
+            --incorrect: #c0392b;
+        }
+        body { 
+            font-family: 'Segoe UI', Verdana, sans-serif; 
+            background-color: var(--bg-crimson); 
+            color: var(--text-light);
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+        }
+        #presentation-container { 
+            width: 95%; 
+            max-width: 1050px; 
+            height: 90vh; 
+            background: var(--card-bg); 
+            border: 3px solid var(--accent-gold);
+            border-radius: 10px; 
+            box-shadow: 0 0 30px rgba(0,0,0,0.8); 
+            position: relative; 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        .slide { display: none; padding: 40px; flex-grow: 1; overflow-y: auto; }
+        .slide.active { display: flex; flex-direction: column; justify-content: flex-start; animation: fadeIn 0.4s; }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        h2 { 
+            color: var(--accent-gold); 
+            font-size: 2.2rem; 
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--accent-gold);
+            padding-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .content { font-size: 1.4rem; line-height: 1.4; }
+        .translation { font-style: italic; color: #bdc3c7; font-size: 1.2rem; display: block; margin-bottom: 10px; }
+        strong { color: var(--accent-gold); }
+
+        /* Navigation */
+        .controls { 
+            padding: 20px; 
+            background: rgba(0, 0, 0, 0.6); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-top: 1px solid var(--accent-gold);
+        }
+        button.nav-btn { 
+            padding: 10px 30px; 
+            cursor: pointer; 
+            border: 2px solid var(--accent-gold); 
+            background: var(--accent-gold); 
+            color: var(--bg-crimson); 
+            font-size: 1.1rem;
+            font-weight: bold; 
+            border-radius: 5px;
+            transition: 0.3s; 
+        }
+        button.nav-btn:hover:not(:disabled) { background: transparent; color: var(--accent-gold); }
+        button:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        /* Quiz Styling */
+        .quiz-option { 
+            display: block; 
+            width: 100%; 
+            padding: 12px 20px; 
+            margin: 8px 0; 
+            text-align: left; 
+            background: rgba(255, 255, 255, 0.05); 
+            border: 1px solid var(--accent-gold); 
+            color: white;
+            font-size: 1.1rem; 
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .rationalization { 
+            margin-top: 15px; 
+            padding: 15px; 
+            border-radius: 8px;
+            display: none; 
+            font-size: 1.1rem;
+            border: 1px solid white;
+        }
+        .correct-box { background-color: var(--correct); }
+        .incorrect-box { background-color: var(--incorrect); }
+        .prog-bar { font-size: 1.2rem; color: var(--accent-gold); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div id="presentation-container">
+    <div class="slide active">
+        <h2>Part 1: Society and the Individual</h2>
+        <div class="content">
+            <p>In this section, we look at how society is built by humans, but eventually starts to feel like a "natural" force that controls us.</p>
+            <span class="translation"><i>Sa bahaging ito, titingnan natin kung paano binubuo ng tao ang lipunan, ngunit sa huli ay nagmumukha itong "natural" na puwersa na kumokontrol sa atin.</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Externalization</h2>
+        <div class="content">
+            <p><strong>1. The Three Stages of Social Reality (Peter Berger)</strong></p>
+            <span class="translation"><i>Ang Tatlong Yugto ng Panlipunang Katotohanan (Peter Berger).</i></span>
+            <p>How does a random idea become a "social rule"?</p>
+            <span class="translation"><i>Paano nagiging "panlipunang tuntunin" ang isang random na ideya?</i></span>
+            <p><strong>Externalization:</strong> Humans create something—an idea, a tool, or a law—and put it out into the world.</p>
+            <span class="translation"><i>Ang tao ay lumilikha ng isang bagay—ideya, kasangkapan, o batas—at inilalabas ito sa mundo.</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Example: Externalization</h2>
+        <div class="content">
+            <p><strong>Example:</strong> A group of friends decides that every Friday is "Yellow Shirt Day."</p>
+            <span class="translation"><i>Halimbawa: Isang grupo ng magkakaibigan ang nagpasya na tuwing Biyernes ay "Yellow Shirt Day."</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Objectivation</h2>
+        <div class="content">
+            <p><strong>Objectivation:</strong> Over time, these creations become "objects" that exist independently of the creator.</p>
+            <span class="translation"><i>Sa paglipas ng panahon, ang mga likhang ito ay nagiging "bagay" na umiiral nang hiwalay sa lumikha.</i></span>
+            <p>They start to feel like "just the way things are."</p>
+            <span class="translation"><i>Nagsisimula itong magmukhang "ganito lang talaga ang mga bagay-bagay."</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Example: Objectivation</h2>
+        <div class="content">
+            <p><strong>Example:</strong> New members join the group and think "Yellow Shirt Day" is a mandatory rule that has existed forever.</p>
+            <span class="translation"><i>Halimbawa: May mga bagong miyembro na sumali at iniisip na ang "Yellow Shirt Day" ay isang obligadong panuntunan na dati pa naririyan.</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Internalization</h2>
+        <div class="content">
+            <p><strong>Internalization:</strong> The individual absorbs these social rules and makes them part of their own identity or desires.</p>
+            <span class="translation"><i>Ina-absorb ng indibidwal ang mga panlipunang tuntuning ito at ginagawa itong bahagi ng kanilang sariling pagkakakilanlan o kagustuhan.</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Example: Internalization</h2>
+        <div class="content">
+            <p><strong>Example:</strong> You feel "wrong" or "guilty" if you wear a blue shirt on Friday, even if no one is watching.</p>
+            <span class="translation"><i>Halimbawa: Nakakaramdam ka ng "mali" o "guilt" kung magsuot ka ng asul na damit sa Biyernes, kahit walang nakakakita.</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Social Structure</h2>
+        <div class="content">
+            <p><strong>2. Agency vs. Structure</strong></p>
+            <span class="translation"><i>Ahensya laban sa Estruktura.</i></span>
+            <p><strong>Social Structure:</strong> The organized pattern of social relationships and institutions that guide or limit our choices.</p>
+            <span class="translation"><i>Ang organisadong pattern ng mga ugnayang panlipunan at institusyon na gumagabay o naglilimita sa ating mga pagpipilian.</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Individual Agency</h2>
+        <div class="content">
+            <p><strong>Individual Agency:</strong> The power of an individual to act independently and make free choices, even if it means changing the structure.</p>
+            <span class="translation"><i>Ang kapangyarihan ng isang indibidwal na kumilos nang malaya at gumawa ng sariling desisyon, kahit mangahulugan ito ng pagbabago sa estruktura.</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>The Looking-Glass Self</h2>
+        <div class="content">
+            <p><strong>3. The Looking-Glass Self (Charles Cooley)</strong></p>
+            <span class="translation"><i>Ang Salaming-Sarili (Charles Cooley).</i></span>
+            <p>We see ourselves through the eyes of others.</p>
+            <span class="translation"><i>Nakikita natin ang ating sarili sa pamamagitan ng mga mata ng iba.</i></span>
+            <p>Our self-image is built based on how we think others perceive us.</p>
+            <span class="translation"><i>Ang ating tingin sa sarili ay nabubuo base sa kung paano natin iniisip na tinitingnan tayo ng ibang tao.</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Formative Assessment 1</h2>
+        <div class="content">
+            <p>A society establishes a tradition of silence during sunset. Generations later, citizens believe that breaking this silence will cause a physical illness. This illustrates:</p>
+            <span class="translation"><i>Isang lipunan ang nagtatag ng tradisyon ng katahimikan tuwing lulubog ang araw. Pagkalipas ng mga henerasyon, naniniwala ang mga mamamayan na ang paglabag dito ay magdudulot ng sakit. Ito ay nagpapakita ng:</i></span>
+            <div class="quiz-container">
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Externalization is the creation, not the long-term belief in it as a law.')">A. The externalization of health concerns.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, true, 'Correct! This is Objectivation because the social habit now feels like an objective physical reality.')">B. The objectivation of a social habit.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Internalization is about personal guilt, not a belief in physical consequences.')">C. The internalization of medical knowledge.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Agency is the power to change rules, not being scared of them.')">D. The exercise of individual agency.')</button>
+            </div>
+            <div class="rationalization"></div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Formative Assessment 2</h2>
+        <div class="content">
+            <p>A student feels a deep sense of anxiety when they consider skipping a class, even if there are no penalties. This is an example of:</p>
+            <span class="translation"><i>Ang isang estudyante ay nakakaramdam ng matinding kaba kapag iniisip niyang lumiban sa klase, kahit walang parusa. Ito ay halimbawa ng:</i></span>
+            <div class="quiz-container">
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Objectivation makes the rule exist, but doesn\'t explain the internal feeling.')">A. The objectivation of the school schedule.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. This isn\'t a choice, it\'s an emotional reaction.')">B. The use of agency to follow school rules.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, true, 'Correct! Internalization is when the rule becomes part of your internal conscience.')">C. The internalization of social expectations.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Looking-glass self requires seeing an actual external reflection/feedback.')">D. The looking-glass self in a school setting.')</button>
+            </div>
+            <div class="rationalization"></div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Formative Assessment 3</h2>
+        <div class="content">
+            <p>In a community where everyone values "hustle culture," an individual decides to quit their high-paying job to live a simple, slow life. This act is primarily:</p>
+            <span class="translation"><i>Sa isang komunidad kung saan mahalaga ang "hustle culture," isang tao ang nag-resign sa malaking sweldo para sa simpleng buhay. Ang kilos na ito ay:</i></span>
+            <div class="quiz-container">
+                <button class="quiz-option" onclick="handleQuiz(this, true, 'Correct! Choosing to go against the social structure is a prime example of Individual Agency.')">A. An exercise of individual agency.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. The structure is what the person is leaving.')">B. A validation of the social structure.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. This isn\'t creating a rule, it\'s breaking one.')">C. The externalization of economic value.')</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Internalization would have made the person stay.')">D. The internalization of modern capitalism.')</button>
+            </div>
+            <div class="rationalization"></div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Formative Assessment 4</h2>
+        <div class="content">
+            <p>How does the "Looking-Glass Self" explain a person's behavior on a professional networking site like LinkedIn?</p>
+            <span class="translation"><i>Paano ipinapaliwanag ng "Looking-Glass Self" ang kilos ng tao sa LinkedIn?</i></span>
+            <div class="quiz-container">
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. LinkedIn acts as the mirror, not the agency.')">A. The person uses their agency to find a better-paying job.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, true, 'Correct! You build your identity based on how you think the professional world sees you.')">B. The person shapes their professional identity based on perceived views of others.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Externalization is the creation of the post.')">C. The person externalizes their skills into a digital format.')</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Objectivation is about the platform itself, not identity.')">D. The person objectifies their career as a series of digital badges.')</button>
+            </div>
+            <div class="rationalization"></div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Formative Assessment 5</h2>
+        <div class="content">
+            <p>When a student says, "I have to wear the uniform because it's just the law of the universe," they are demonstrating that they see the uniform as:</p>
+            <span class="translation"><i>Kapag sinabi ng estudyante na, "Kailangan ko mag-uniporme dahil ito ang batas ng mundo," nakikita niya ang uniporme bilang:</i></span>
+            <div class="quiz-container">
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. This is the opposite of agency.')">A. A choice made through individual agency.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. This is about current perception, not origin.')">B. A product of recent externalization.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, true, 'Correct! Seeing a human rule as an unchangeable universal law is Objectivation.')">C. An objectified social reality.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Internalization is when they *want* to wear it.')">D. A purely internalized personal preference.')</button>
+            </div>
+            <div class="rationalization"></div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="prevBtn" class="nav-btn" onclick="moveSlide(-1)" disabled>PREVIOUS</button>
+        <div class="prog-bar" id="prog">1 / 15</div>
+        <button id="nextBtn" class="nav-btn" onclick="moveSlide(1)">NEXT</button>
+    </div>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const progText = document.getElementById('prog');
+
+    function moveSlide(step) {
+        slides[currentSlide].classList.remove('active');
+        currentSlide += step;
+        slides[currentSlide].classList.add('active');
+        
+        document.getElementById('prevBtn').disabled = (currentSlide === 0);
+        document.getElementById('nextBtn').disabled = (currentSlide === slides.length - 1);
+        
+        progText.innerText = `${currentSlide + 1} / ${slides.length}`;
+    }
+
+    function handleQuiz(btn, isCorrect, text) {
+        const slide = btn.closest('.slide');
+        const ratBox = slide.querySelector('.rationalization');
+        ratBox.innerHTML = text;
+        ratBox.className = 'rationalization ' + (isCorrect ? 'correct-box' : 'incorrect-box');
+        ratBox.style.display = 'block';
+    }
+</script>
+
+</body>
+</html>

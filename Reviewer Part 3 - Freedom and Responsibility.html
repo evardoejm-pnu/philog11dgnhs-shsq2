@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philosophy Reviewer - Part 3</title>
+    <style>
+        :root {
+            --bg-crimson: #4a0404; 
+            --accent-gold: #d4af37; 
+            --text-light: #ffffff; 
+            --card-bg: rgba(25, 0, 0, 0.9);
+            --correct: #27ae60;
+            --incorrect: #c0392b;
+        }
+        body { 
+            font-family: 'Segoe UI', Verdana, sans-serif; 
+            background-color: var(--bg-crimson); 
+            color: var(--text-light);
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+        }
+        #presentation-container { 
+            width: 95%; 
+            max-width: 1050px; 
+            height: 90vh; 
+            background: var(--card-bg); 
+            border: 3px solid var(--accent-gold);
+            border-radius: 10px; 
+            box-shadow: 0 0 30px rgba(0,0,0,0.8); 
+            position: relative; 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        .slide { display: none; padding: 40px; flex-grow: 1; overflow-y: auto; }
+        .slide.active { display: flex; flex-direction: column; justify-content: flex-start; animation: fadeIn 0.4s; }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        h2 { 
+            color: var(--accent-gold); 
+            font-size: 2.2rem; 
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--accent-gold);
+            padding-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .content { font-size: 1.4rem; line-height: 1.4; }
+        .translation { font-style: italic; color: #bdc3c7; font-size: 1.2rem; display: block; margin-bottom: 10px; }
+        strong { color: var(--accent-gold); }
+
+        .controls { 
+            padding: 20px; 
+            background: rgba(0, 0, 0, 0.6); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-top: 1px solid var(--accent-gold);
+        }
+        button.nav-btn { 
+            padding: 10px 30px; 
+            cursor: pointer; 
+            border: 2px solid var(--accent-gold); 
+            background: var(--accent-gold); 
+            color: var(--bg-crimson); 
+            font-size: 1.1rem;
+            font-weight: bold; 
+            border-radius: 5px;
+            transition: 0.3s; 
+        }
+        button.nav-btn:hover:not(:disabled) { background: transparent; color: var(--accent-gold); }
+        button:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        .quiz-option { 
+            display: block; 
+            width: 100%; 
+            padding: 12px 20px; 
+            margin: 8px 0; 
+            text-align: left; 
+            background: rgba(255, 255, 255, 0.05); 
+            border: 1px solid var(--accent-gold); 
+            color: white;
+            font-size: 1.1rem; 
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .rationalization { 
+            margin-top: 15px; 
+            padding: 15px; 
+            border-radius: 8px;
+            display: none; 
+            font-size: 1.1rem;
+            border: 1px solid white;
+        }
+        .correct-box { background-color: var(--correct); }
+        .incorrect-box { background-color: var(--incorrect); }
+        .prog-bar { font-size: 1.2rem; color: var(--accent-gold); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div id="presentation-container">
+    <div class="slide active">
+        <h2>Part 3: Freedom and Responsibility</h2>
+        <div class="content">
+            <p>Freedom is not just "doing whatever you want." In philosophy, it is the ability to make choices and being responsible for the outcome of those choices.</p>
+            <span class="translation"><i>Ang kalayaan ay hindi lamang "paggawa ng kahit anong gusto mo." Sa pilosopiya, ito ang kakayahang pumili at pagiging responsable sa bunga ng mga pagpiling iyon.</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>1. Jean-Paul Sartre: "Existence Precedes Essence"</h2>
+        <div class="content">
+            <p>Humans are not born with a pre-set purpose. We are born first (existence), and then we define who we are through our choices (essence).</p>
+            <span class="translation"><i>Ang tao ay hindi ipinanganak na may nakatakda nang layunin. Tayo ay isinisilang muna (existence), at pagkatapos ay binibigyang-kahulugan natin kung sino tayo sa pamamagitan ng ating mga pagpili (essence).</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>"Condemned to be Free"</h2>
+        <div class="content">
+            <p>We are "condemned" because we did not create ourselves, yet we are "free" because once thrown into the world, we are responsible for everything we do.</p>
+            <span class="translation"><i>Tayo ay "condemned" dahil hindi natin nilikha ang ating sarili, ngunit tayo ay "malaya" dahil kapag nasa mundo na tayo, tayo ang responsable sa lahat ng ating ginagawa.</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>2. Facticity vs. Transcendence</h2>
+        <div class="content">
+            <p><strong>Facticity:</strong> The things about you that you cannot change (e.g., your place of birth, your parents, your past mistakes).</p>
+            <span class="translation"><i>Ang mga bagay tungkol sa iyo na hindi mo na mababago (hal. lugar ng kapanganakan, iyong mga magulang, iyong mga nakaraang pagkakamali).</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>2. Facticity vs. Transcendence</h2>
+        <div class="content">
+            <p><strong>Transcendence:</strong> The ability to go beyond your facticity by making new choices and defining your future.</p>
+            <span class="translation"><i>Ang kakayahang lampasan ang iyong facticity sa pamamagitan ng paggawa ng mga bagong pagpili at pagtakda sa iyong hinaharap.</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>3. Authenticity vs. Bad Faith (Mauvaise Foi)</h2>
+        <div class="content">
+            <p><strong>Authenticity:</strong> Owning your choices and the responsibility that comes with them.</p>
+            <span class="translation"><i>Ang pag-angkin sa iyong mga desisyon at sa responsibilidad na kaakibat ng mga ito.</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>3. Authenticity vs. Bad Faith</h2>
+        <div class="content">
+            <p><strong>Bad Faith:</strong> Making excuses or pretending you "have no choice" to avoid responsibility.</p>
+            <span class="translation"><i>Paggawa ng mga dahilan o pagkukunwari na "wala kang choice" para makatakas sa responsibilidad.</i></span>
+            <p>Example: A student saying "I only cheated because the exam was too hard," blaming the exam instead of their choice.</p>
+            <span class="translation"><i>Halimbawa: Isang estudyante na nagsasabing "Nandaya lang ako kasi ang hirap ng exam," sinisisi ang exam imbes na ang kanyang pinili.</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Formative Assessment 1</h2>
+        <div class="content">
+            <p>An individual claims they are destined to be a criminal because they grew up in a high-crime neighborhood and had no positive role models. Jean-Paul Sartre would argue this person is:</p>
+            <span class="translation"><i>Sinasabi ng isang tao na nakatadhana siyang maging kriminal dahil lumaki siya sa lugar na maraming krimen. Sasabihin ni Sartre na ang taong ito ay:</i></span>
+            <div class="quiz-container">
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. This person is actually letting their facticity define them entirely.')">A. Correctly identifying how facticity determines a person\'s essence.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, true, 'Correct! By claiming they "had no choice," they are in Bad Faith, avoiding their responsibility to transcend their situation.')">B. Acting in "Bad Faith" by using their facticity to avoid responsibility.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Authenticity requires taking ownership of one\'s future despite the past.')">C. Demonstrating an authentic acceptance of their predetermined destiny.')</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. This person is denying their transcendence rather than exercising it.')">D. Exercising transcendence to define their life through their environment.')</button>
+            </div>
+            <div class="rationalization"></div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Formative Assessment 2</h2>
+        <div class="content">
+            <p>Which scenario best illustrates the concept of "Existence Precedes Essence"?</p>
+            <span class="translation"><i>Aling sitwasyon ang pinakamahusay na nagpapakita ng konsepto ng "Existence Precedes Essence"?</i></span>
+            <div class="quiz-container">
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. This describes the opposite (Essence precedes existence), where a purpose is pre-set.')">A. A biological machine programmed to perform specific tasks effectively.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. This describes biological or social facticity.')">B. A person following the career path their parents chose before birth.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, true, 'Correct! The individual is born first (existence) and defines their purpose (essence) through their own actions.')">C. An individual defining their own life purpose through their daily actions.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. This describes a pre-determined religious or cosmic essence.')">D. A spiritual being following a pre-written divine plan for their future.')</button>
+            </div>
+            <div class="rationalization"></div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Formative Assessment 3</h2>
+        <div class="content">
+            <p>A person born with a physical disability trains hard to become a champion athlete. In philosophical terms, the disability is their ______ and the training is their ______.</p>
+            <span class="translation"><i>Ang isang taong may kapansanan na nag-ensayo para maging kampeon. Ang kapansanan ay kanilang ______ at ang pag-eensayo ay kanilang ______.</i></span>
+            <div class="quiz-container">
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. These are the reverse of the correct philosophical definitions.')">A. Transcendence; Facticity</button>
+                <button class="quiz-option" onclick="handleQuiz(this, true, 'Correct! Facticity is the unchangeable starting point; Transcendence is the act of going beyond it.')">B. Facticity; Transcendence</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Bad Faith is an excuse, not a physical condition.')">C. Bad Faith; Authenticity</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. These terms refer to the order of being, not the conflict between limits and will.')">D. Essence; Existence</button>
+            </div>
+            <div class="rationalization"></div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Formative Assessment 4</h2>
+        <div class="content">
+            <p>Why does Sartre say we are "condemned" to be free?</p>
+            <span class="translation"><i>Bakit sinabi ni Sartre na tayo ay "condemned" na maging malaya?</i></span>
+            <div class="quiz-container">
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Condemnation refers to the burden of responsibility, not physical imprisonment.')">A. Because we are physically trapped by the laws of our social structures.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. This is a scientific view, not Sartre\'s existentialist view.')">B. Because our freedom is limited by the biological evolution of our species.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, true, 'Correct! We are "condemned" because we have no choice but to choose, and the weight of that choice is ours alone.')">C. Because we must choose for ourselves and carry the weight of responsibility.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Sartre believes we are free because there is no pre-written destiny.')">D. Because we are forced to follow a pre-written destiny against our own will.')</button>
+            </div>
+            <div class="rationalization"></div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Formative Assessment 5</h2>
+        <div class="content">
+            <p>A student fails a test and tells their teacher, "The universe just wanted me to fail today." This student is demonstrating:</p>
+            <span class="translation"><i>Bumagsak ang estudyante at sinabing, "Gusto lang talaga ng mundo na bumagsak ako." Ang estudyanteng ito ay nagpapakita ng:</i></span>
+            <div class="quiz-container">
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Authenticity would be admitting they didn\'t study enough.')">A. An authentic acceptance of the unchangeable facticity of the universe.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, true, 'Correct! Blaming the "universe" is an excuse used to avoid the personal responsibility of the failure.')">B. Bad Faith by avoiding responsibility for their own academic performance.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Transcendence would be making a plan to study harder for the next exam.')">C. The exercise of transcendence to find meaning in a negative situation.')</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. This has no relation to the digital social mirror of Cooley.')">D. The looking-glass self being reflected in the eyes of their teacher.')</button>
+            </div>
+            <div class="rationalization"></div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="prevBtn" class="nav-btn" onclick="moveSlide(-1)" disabled>PREVIOUS</button>
+        <div class="prog-bar" id="prog">1 / 12</div>
+        <button id="nextBtn" class="nav-btn" onclick="moveSlide(1)">NEXT</button>
+    </div>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const progText = document.getElementById('prog');
+
+    function moveSlide(step) {
+        slides[currentSlide].classList.remove('active');
+        currentSlide += step;
+        slides[currentSlide].classList.add('active');
+        
+        document.getElementById('prevBtn').disabled = (currentSlide === 0);
+        document.getElementById('nextBtn').disabled = (currentSlide === slides.length - 1);
+        
+        progText.innerText = `${currentSlide + 1} / ${slides.length}`;
+    }
+
+    function handleQuiz(btn, isCorrect, text) {
+        const slide = btn.closest('.slide');
+        const ratBox = slide.querySelector('.rationalization');
+        ratBox.innerHTML = text;
+        ratBox.className = 'rationalization ' + (isCorrect ? 'correct-box' : 'incorrect-box');
+        ratBox.style.display = 'block';
+    }
+</script>
+
+</body>
+</html>

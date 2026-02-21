@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philosophy Reviewer - Part 4</title>
+    <style>
+        :root {
+            --bg-crimson: #4a0404; 
+            --accent-gold: #d4af37; 
+            --text-light: #ffffff; 
+            --card-bg: rgba(25, 0, 0, 0.9);
+            --correct: #27ae60;
+            --incorrect: #c0392b;
+        }
+        body { 
+            font-family: 'Segoe UI', Verdana, sans-serif; 
+            background-color: var(--bg-crimson); 
+            color: var(--text-light);
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+        }
+        #presentation-container { 
+            width: 95%; 
+            max-width: 1050px; 
+            height: 90vh; 
+            background: var(--card-bg); 
+            border: 3px solid var(--accent-gold);
+            border-radius: 10px; 
+            box-shadow: 0 0 30px rgba(0,0,0,0.8); 
+            position: relative; 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        .slide { display: none; padding: 40px; flex-grow: 1; overflow-y: auto; }
+        .slide.active { display: flex; flex-direction: column; justify-content: flex-start; animation: fadeIn 0.4s; }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        h2 { 
+            color: var(--accent-gold); 
+            font-size: 2.2rem; 
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--accent-gold);
+            padding-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .content { font-size: 1.4rem; line-height: 1.4; }
+        .translation { font-style: italic; color: #bdc3c7; font-size: 1.2rem; display: block; margin-bottom: 10px; }
+        strong { color: var(--accent-gold); }
+
+        .controls { 
+            padding: 20px; 
+            background: rgba(0, 0, 0, 0.6); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-top: 1px solid var(--accent-gold);
+        }
+        button.nav-btn { 
+            padding: 10px 30px; 
+            cursor: pointer; 
+            border: 2px solid var(--accent-gold); 
+            background: var(--accent-gold); 
+            color: var(--bg-crimson); 
+            font-size: 1.1rem;
+            font-weight: bold; 
+            border-radius: 5px;
+            transition: 0.3s; 
+        }
+        button.nav-btn:hover:not(:disabled) { background: transparent; color: var(--accent-gold); }
+        button:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        .quiz-option { 
+            display: block; 
+            width: 100%; 
+            padding: 12px 20px; 
+            margin: 8px 0; 
+            text-align: left; 
+            background: rgba(255, 255, 255, 0.05); 
+            border: 1px solid var(--accent-gold); 
+            color: white;
+            font-size: 1.1rem; 
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .rationalization { 
+            margin-top: 15px; 
+            padding: 15px; 
+            border-radius: 8px;
+            display: none; 
+            font-size: 1.1rem;
+            border: 1px solid white;
+        }
+        .correct-box { background-color: var(--correct); }
+        .incorrect-box { background-color: var(--incorrect); }
+        .prog-bar { font-size: 1.2rem; color: var(--accent-gold); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div id="presentation-container">
+    <div class="slide active">
+        <h2>Part 4: Logotherapy and Meaning (Viktor Frankl)</h2>
+        <div class="content">
+            <p>Viktor Frankl, a Holocaust survivor, argued that "The Will to Meaning" is the primary drive of humans.</p>
+            <span class="translation"><i>Si Viktor Frankl, isang nakaligtas sa Holocaust, ay nanindigan na ang "The Will to Meaning" (Ang Kagustuhang Makahanap ng Kahulugan) ang pangunahing motibasyon ng tao.</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>1. Three Ways to Find Meaning</h2>
+        <div class="content">
+            <p><strong>Creative Value:</strong> Creating something (art, a building, a family).</p>
+            <span class="translation"><i>Creative Value: Paglikha ng isang bagay (sining, gusali, o pamilya).</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>1. Three Ways to Find Meaning</h2>
+        <div class="content">
+            <p><strong>Experiential Value:</strong> Experiencing something (nature, culture, or love).</p>
+            <span class="translation"><i>Experiential Value: Pagdanas ng isang bagay (kalikasan, kultura, o pag-ibig).</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>1. Three Ways to Find Meaning</h2>
+        <div class="content">
+            <p><strong>Attitudinal Value:</strong> Even when you can't change your situation (suffering), you can change your attitude toward it.</p>
+            <span class="translation"><i>Attitudinal Value: Kahit hindi mo mababago ang iyong sitwasyon (pagdurusa), maaari mong baguhin ang iyong saloobin o pananaw dito.</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Example of Attitudinal Value</h2>
+        <div class="content">
+            <p><strong>Example:</strong> A student failing a subject can find meaning by choosing to face the failure with dignity and using it as a lesson for the next semester.</p>
+            <span class="translation"><i>Halimbawa: Ang isang estudyanteng bumagsak sa subject ay makakahanap ng kahulugan sa pagharap sa pagkabigo nang may dangal at paggamit nito bilang leksyon para sa susunod na semestre.</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>2. The Final Why (Telos)</h2>
+        <div class="content">
+            <p>The ultimate goal that drives your actions.</p>
+            <span class="translation"><i>Ang pinakamahalagang layunin na nagpapatakbo sa iyong mga kilos.</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Instrumental vs. Final Value</h2>
+        <div class="content">
+            <p><strong>Instrumental Value:</strong> A means to an end (e.g., studying to get a grade).</p>
+            <span class="translation"><i>Instrumental Value: Isang paraan para sa isang layunin (hal. pag-aaral para makakuha ng grade).</i></span>
+            <p><strong>Final Why:</strong> The end itself (e.g., studying because you want to be a person who helps others).</p>
+            <span class="translation"><i>Final Why: Ang mismong layunin (hal. pag-aaral dahil gusto mong maging taong nakakatulong sa iba).</i></span>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Formative Assessment 1</h2>
+        <div class="content">
+            <p>A prisoner of war remains hopeful by constantly thinking about the beauty of the sunset they saw before the war. This represents which way to find meaning?</p>
+            <span class="translation"><i>Ang isang bilanggo ng digmaan ay nananatiling positibo sa pamamagitan ng pag-iisip sa ganda ng sunset na nakita niya bago ang digmaan. Anong paraan ito ng paghahanap ng kahulugan?</i></span>
+            <div class="quiz-container">
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Creative value involves making or producing something new.')">A. Creative Value</button>
+                <button class="quiz-option" onclick="handleQuiz(this, true, 'Correct! Experiential value is found in experiencing things like beauty, nature, or love.')">B. Experiential Value</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. While related to attitude, the source of meaning here is the experience of the sunset.')">C. Attitudinal Value</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Instrumental value is a tool for an end, not a source of deep meaning.')">D. Instrumental Value</button>
+            </div>
+            <div class="rationalization"></div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Formative Assessment 2</h2>
+        <div class="content">
+            <p>An individual is diagnosed with an incurable disease but chooses to spend their final days encouraging others in the hospital. This choice demonstrates:</p>
+            <span class="translation"><i>Ang isang taong may sakit na wala nang lunas ngunit piniling gugulin ang huling araw sa pag-e-encourage sa iba. Ito ay nagpapakita ng:</i></span>
+            <div class="quiz-container">
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. This person is not just experiencing a passive event.')">A. Experiential Value</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. This person is not focused on creating a physical object.')">B. Creative Value</button>
+                <button class="quiz-option" onclick="handleQuiz(this, true, 'Correct! Attitudinal value is finding meaning in suffering by changing one\'s stance toward it.')">C. Attitudinal Value</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Logotherapy is the name of the theory, not the specific way of finding meaning.')">D. Instrumental Value</button>
+            </div>
+            <div class="rationalization"></div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Formative Assessment 3</h2>
+        <div class="content">
+            <p>According to Viktor Frankl, the "Will to Meaning" is different from other biological drives because it is:</p>
+            <span class="translation"><i>Ayon kay Viktor Frankl, ang "Will to Meaning" ay naiiba sa ibang biyolohikal na drive dahil ito ay:</i></span>
+            <div class="quiz-container">
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Frankl argues meaning is a primary drive, not just a side effect.')">A. A biological byproduct of the need to find food and shelter for survival.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. This describes a social rule (Berger), not Frankl\'s existential drive.')">B. A social rule that we follow only to be accepted by the broader community.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Meaning is existential and psychological, not a physical organ.')">C. A physical organ that every human being is naturally born with to survive.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, true, 'Correct! It is a primary drive that motivates us to keep living even in the face of suffering.')">D. A primary drive that motivates us to keep living and acting with purpose.</button>
+            </div>
+            <div class="rationalization"></div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Formative Assessment 4</h2>
+        <div class="content">
+            <p>A student studies hard only to get a high-paying job in the future. In this case, the student’s education has what type of value?</p>
+            <span class="translation"><i>Ang isang estudyante ay nag-aaral lang para magkaroon ng trabahong malaki ang sweldo. Sa kasong ito, ano ang value ng edukasyon niya?</i></span>
+            <div class="quiz-container">
+                <button class="quiz-option" onclick="handleQuiz(this, true, 'Correct! Instrumental value is using something as a means to reach a different end (money/job).')">A. Instrumental Value</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Final Why is the end itself, not a tool for a different goal.')">B. Final Why (Telos)</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. This describes finding meaning in an experience.')">C. Experiential Value</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Creative value involves the act of making something meaningful.')">D. Creative Value</button>
+            </div>
+            <div class="rationalization"></div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Formative Assessment 5</h2>
+        <div class="content">
+            <p>Which of the following scenarios best represents the "Final Why" (Telos) in a human's life pursuit?</p>
+            <span class="translation"><i>Alin sa mga sumusunod ang pinakamahusay na nagpapakita ng "Final Why" (Telos) sa buhay ng tao?</i></span>
+            <div class="quiz-container">
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Exercising for a look is instrumental (a tool for vanity).')">A. Exercising daily specifically to look attractive for an upcoming social event.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Working for a bonus is instrumental (a tool for money).')">B. Working overtime at a job only to receive a larger performance bonus check.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, true, 'Correct! Seeking to be helpful is the "end itself"—it is a core value that drives the person.')">C. Seeking to be a person who helps others because it is inherently meaningful.</button>
+                <button class="quiz-option" onclick="handleQuiz(this, false, 'Incorrect. Studying for a grade is instrumental (a tool for academic ranking).')">D. Studying for an exam solely to avoid the embarrassment of receiving a failing grade.')</button>
+            </div>
+            <div class="rationalization"></div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="prevBtn" class="nav-btn" onclick="moveSlide(-1)" disabled>PREVIOUS</button>
+        <div class="prog-bar" id="prog">1 / 12</div>
+        <button id="nextBtn" class="nav-btn" onclick="moveSlide(1)">NEXT</button>
+    </div>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const progText = document.getElementById('prog');
+
+    function moveSlide(step) {
+        slides[currentSlide].classList.remove('active');
+        currentSlide += step;
+        slides[currentSlide].classList.add('active');
+        
+        document.getElementById('prevBtn').disabled = (currentSlide === 0);
+        document.getElementById('nextBtn').disabled = (currentSlide === slides.length - 1);
+        
+        progText.innerText = `${currentSlide + 1} / ${slides.length}`;
+    }
+
+    function handleQuiz(btn, isCorrect, text) {
+        const slide = btn.closest('.slide');
+        const ratBox = slide.querySelector('.rationalization');
+        ratBox.innerHTML = text;
+        ratBox.className = 'rationalization ' + (isCorrect ? 'correct-box' : 'incorrect-box');
+        ratBox.style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
